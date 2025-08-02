@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title> Blog</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    body { font-family: 'Montserrat', sans-serif; background: #1a0933; }
+    .blog-card { box-shadow: 0 8px 32px 0 rgba(31,38,135,0.18); transition: transform 0.2s, box-shadow 0.2s; position: relative; overflow: visible; }
+    .blog-card:hover { transform: translateY(-12px) scale(1.04); box-shadow: 0 20px 48px 0 rgba(31,38,135,0.28); }
+    .blog-img { object-fit: cover; height: 200px; border-radius: 1.5rem 1.5rem 0 0; filter: brightness(0.95) saturate(1.1); }
+    .gradient-title { background: linear-gradient(90deg, #a259e6, #6b21a8); -webkit-background-clip: text; color: transparent; }
+    .blog-icon { position: absolute; top: -28px; left: 24px; background: linear-gradient(135deg, #fff 60%, #a259e6 100%); color: #6b21a8; border-radius: 50%; box-shadow: 0 4px 16px rgba(162,89,230,0.18); width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; font-size: 2rem; border: 4px solid #fff; }
+    .blog-card-content { background: rgba(255,255,255,0.13); border-radius: 0 0 1.5rem 1.5rem; }
+    .blog-btn { background: linear-gradient(90deg, #a259e6, #6b21a8); color: #fff; font-weight: bold; border: none; border-radius: 0.75rem; padding: 0.75rem 2rem; box-shadow: 0 2px 8px rgba(162,89,230,0.18); transition: background 0.2s, transform 0.2s; }
+    .blog-btn:hover { background: linear-gradient(90deg, #6b21a8, #a259e6); transform: scale(1.05); }
+    .blog-meta { font-size: 0.95rem; color: #a259e6; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+    .blog-meta i { color: #a259e6; }
+    .header-img { object-fit: cover; width: 100%; height: 320px; border-radius: 0 0 2.5rem 2.5rem; filter: brightness(0.85) saturate(1.1); }
+    .sidebar { background: rgba(31,38,135,0.13); box-shadow: 0 8px 32px 0 rgba(31,38,135,0.10); border-radius: 2rem; }
+    .sidebar-title { background: linear-gradient(90deg, #a259e6, #6b21a8); -webkit-background-clip: text; color: transparent; font-weight: bold; }
+    .category-link { display: flex; align-items: center; gap: 0.5rem; color: #fff; background: linear-gradient(90deg, #3b1e6e 0%, #6b21a8 100%); border-radius: 0.75rem; padding: 0.5rem 1rem; margin-bottom: 0.5rem; transition: background 0.2s, color 0.2s; font-weight: 500; }
+    .category-link:hover { background: linear-gradient(90deg, #a259e6, #6b21a8); color: #fff; }
+    .search-box { background: rgba(255,255,255,0.12); border-radius: 0.75rem; padding: 0.5rem 1rem; color: #fff; border: none; width: 100%; margin-bottom: 1.5rem; }
+    @media (max-width: 1024px) {
+      .sidebar { margin-bottom: 2rem; }
+    }
+    @media (max-width: 768px) {
+      .header-img { height: 180px; border-radius: 0 0 1.5rem 1.5rem; }
+      .blog-card { margin-top: 2.5rem; }
+      .blog-icon { left: 50%; transform: translateX(-50%); }
+      .sidebar { border-radius: 1rem; }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col bg-[#1a0933]">
+  <header class="w-full flex flex-col items-center bg-gradient-to-r from-indigo-900 to-purple-800 shadow-lg relative">
+    <img src="public/345.jpg" alt="Blog Header" class="header-img" />
+    <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center pt-16">
+      <h1 class="text-5xl md:text-6xl font-extrabold gradient-title mb-3 drop-shadow-lg"> Blog</h1>
+      <p class="text-xl md:text-2xl text-white/90 font-medium drop-shadow mb-4">Latest articles and news in technology & AI</p>
+    </div>
+    <div class="w-full h-10 bg-gradient-to-b from-transparent to-[#1a0933] absolute bottom-0 left-0"></div>
+  </header>
+  <main class="flex-1 container mx-auto px-4 py-16">
+    <div class="flex flex-col lg:flex-row gap-12">
+      <!-- Sidebar -->
+      <aside class="sidebar w-full lg:w-1/4 p-8 flex-shrink-0 mb-8 lg:mb-8">
+        <h2 class="sidebar-title text-2xl mb-6 flex items-center gap-2"><i class="fas fa-layer-group"></i> Categories</h2>
+        <input type="text" class="search-box" placeholder="Search articles..." />
+        <nav>
+          <a href="#" class="category-link"><i class="fas fa-brain"></i> AI & Machine Learning</a>
+          <a href="#" class="category-link"><i class="fas fa-laptop-code"></i> Web Development</a>
+          <a href="#" class="category-link"><i class="fas fa-network-wired"></i> Internet of Things</a>
+          <a href="#" class="category-link"><i class="fas fa-vr-cardboard"></i> Augmented Reality</a>
+          <a href="#" class="category-link"><i class="fas fa-graduation-cap"></i> EdTech</a>
+          <a href="#" class="category-link"><i class="fas fa-tools"></i> Vocational Training</a>
+        </nav>
+      </aside>
+      <!-- Blog Cards -->
+      <section class="flex-1 grid gap-12 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
+        <!-- Blog Post 1 -->
+        <div class="blog-card bg-white/10 rounded-3xl overflow-hidden flex flex-col mt-8">
+          <span class="blog-icon"><i class="fas fa-brain"></i></span>
+          <img src="public/1.jpg" alt="AI in Medicine" class="blog-img w-full" />
+          <div class="p-7 flex flex-col flex-1 blog-card-content">
+            <div class="blog-meta"><i class="fas fa-calendar-alt"></i> May 2024 &nbsp; <i class="fas fa-user"></i> John Doe</div>
+            <h2 class="text-2xl font-bold mb-2 gradient-title">AI in Medicine</h2>
+            <p class="text-white/90 mb-5">How machine learning algorithms are revolutionizing disease diagnosis and transforming the future of healthcare.</p>
+            <a href="#" class="mt-auto self-end blog-btn">Read More</a>
+          </div>
+        </div>
+        <!-- Blog Post 2 -->
+        <div class="blog-card bg-white/10 rounded-3xl overflow-hidden flex flex-col mt-8">
+          <span class="blog-icon"><i class="fas fa-laptop-code"></i></span>
+          <img src="public/2.jpg" alt="Modern Web Development" class="blog-img w-full" />
+          <div class="p-7 flex flex-col flex-1 blog-card-content">
+            <div class="blog-meta"><i class="fas fa-calendar-alt"></i> April 2024 &nbsp; <i class="fas fa-user"></i> Jane Smith</div>
+            <h2 class="text-2xl font-bold mb-2 gradient-title">Modern Web Development</h2>
+            <p class="text-white/90 mb-5">Top design and development trends for 2024 and the tools that make developers' lives easier.</p>
+            <a href="#" class="mt-auto self-end blog-btn">Read More</a>
+          </div>
+        </div>
+        <!-- Blog Post 3 -->
+        <div class="blog-card bg-white/10 rounded-3xl overflow-hidden flex flex-col mt-8">
+          <span class="blog-icon"><i class="fas fa-network-wired"></i></span>
+          <img src="public/3.jpg" alt="Future of IoT" class="blog-img w-full" />
+          <div class="p-7 flex flex-col flex-1 blog-card-content">
+            <div class="blog-meta"><i class="fas fa-calendar-alt"></i> March 2024 &nbsp; <i class="fas fa-user"></i> Alex Lee</div>
+            <h2 class="text-2xl font-bold mb-2 gradient-title">The Future of IoT</h2>
+            <p class="text-white/90 mb-5">How the Internet of Things is making our daily lives smarter and more efficient, and what challenges lie ahead.</p>
+            <a href="#" class="mt-auto self-end blog-btn">Read More</a>
+          </div>
+        </div>
+        <!-- Blog Post 4 -->
+        <div class="blog-card bg-white/10 rounded-3xl overflow-hidden flex flex-col mt-8">
+          <span class="blog-icon"><i class="fas fa-vr-cardboard"></i></span>
+          <img src="public/4.jpg" alt="Augmented Reality" class="blog-img w-full" />
+          <div class="p-7 flex flex-col flex-1 blog-card-content">
+            <div class="blog-meta"><i class="fas fa-calendar-alt"></i> March 2024 &nbsp; <i class="fas fa-user"></i> Emily Clark</div>
+            <h2 class="text-2xl font-bold mb-2 gradient-title">The World of Augmented Reality</h2>
+            <p class="text-white/90 mb-5">Exploring new applications of AR in education, entertainment, and industry, and its impact on the future.</p>
+            <a href="#" class="mt-auto self-end blog-btn">Read More</a>
+          </div>
+        </div>
+        <!-- Blog Post 5 -->
+        <div class="blog-card bg-white/10 rounded-3xl overflow-hidden flex flex-col mt-8">
+          <span class="blog-icon"><i class="fas fa-graduation-cap"></i></span>
+          <img src="public/345.jpg" alt="EdTech Revolution" class="blog-img w-full" />
+          <div class="p-7 flex flex-col flex-1 blog-card-content">
+            <div class="blog-meta"><i class="fas fa-calendar-alt"></i> February 2024 &nbsp; <i class="fas fa-user"></i> Michael Brown</div>
+            <h2 class="text-2xl font-bold mb-2 gradient-title">EdTech Revolution</h2>
+            <p class="text-white/90 mb-5">How new technologies are personalizing and making education more interactive, creating new opportunities for all.</p>
+            <a href="#" class="mt-auto self-end blog-btn">Read More</a>
+          </div>
+        </div>
+        <!-- Blog Post 6 -->
+        <div class="blog-card bg-white/10 rounded-3xl overflow-hidden flex flex-col mt-8">
+          <span class="blog-icon"><i class="fas fa-tools"></i></span>
+          <img src="public/amuzesh-e-najari1.jpg" alt="AI in Vocational Training" class="blog-img w-full" />
+          <div class="p-7 flex flex-col flex-1 blog-card-content">
+            <div class="blog-meta"><i class="fas fa-calendar-alt"></i> January 2024 &nbsp; <i class="fas fa-user"></i> Sarah Miller</div>
+            <h2 class="text-2xl font-bold mb-2 gradient-title">AI in Vocational Training</h2>
+            <p class="text-white/90 mb-5">The role of artificial intelligence in learning technical skills and hands-on training across various fields.</p>
+            <a href="#" class="mt-auto self-end blog-btn">Read More</a>
+          </div>
+        </div>
+      </section>
+      
+    </div>
+    <div class="flex flex-col items-center my-8">
+      <div class="flex gap-2">
+        <input type="radio" id="page1" name="pagination" class="hidden peer/page1" checked />
+        <label for="page1" class="px-4 py-2 rounded-xl cursor-pointer bg-gradient-to-r from-purple-500 to-indigo-700 text-white font-bold shadow-md transition-all duration-200 peer-checked/page1:scale-110 peer-checked/page1:ring-2 peer-checked/page1:ring-purple-400">
+          1
+        </label>
+        <input type="radio" id="page2" name="pagination" class="hidden peer/page2" />
+        <label for="page2" class="px-4 py-2 rounded-xl cursor-pointer bg-gradient-to-r from-purple-500 to-indigo-700 text-white font-bold shadow-md transition-all duration-200 peer-checked/page2:scale-110 peer-checked/page2:ring-2 peer-checked/page2:ring-purple-400">
+          2
+        </label>
+        <input type="radio" id="page3" name="pagination" class="hidden peer/page3" />
+        <label for="page3" class="px-4 py-2 rounded-xl cursor-pointer bg-gradient-to-r from-purple-500 to-indigo-700 text-white font-bold shadow-md transition-all duration-200 peer-checked/page3:scale-110 peer-checked/page3:ring-2 peer-checked/page3:ring-purple-400">
+          3
+        </label>
+        <input type="radio" id="page4" name="pagination" class="hidden peer/page4" />
+        <label for="page4" class="px-4 py-2 rounded-xl cursor-pointer bg-gradient-to-r from-purple-500 to-indigo-700 text-white font-bold shadow-md transition-all duration-200 peer-checked/page4:scale-110 peer-checked/page4:ring-2 peer-checked/page4:ring-purple-400">
+          4
+        </label>
+      </div>
+   
+    </div>
+  </main>
+  <div class="relative -mb-1">
+    <svg class="w-full h-24 md:h-32 lg:h-40" viewBox="0 0 1440 320" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="gradient-wave" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#1e1b4b" />   <!-- indigo-900 -->
+          <stop offset="100%" stop-color="#6b21a8" /> <!-- purple-800 -->
+        </linearGradient>
+      </defs>
+      <path fill="url(#gradient-wave)" fill-opacity="1">
+        <animate 
+          attributeName="d" 
+          dur="10s"
+          repeatCount="indefinite"
+          values="
+            M0,160 C360,320 1080,0 1440,160 L1440,320 L0,320 Z;
+            M0,200 C480,80 960,320 1440,200 L1440,320 L0,320 Z;
+            M0,160 C360,320 1080,0 1440,160 L1440,320 L0,320 Z
+          " 
+        />
+      </path>
+    </svg>
+  </div>
+  
+  
+  <footer class="footer-3d bg-gradient-to-br from-indigo-900 to-purple-800 text-white relative overflow-hidden pt-12 pb-8">
+    <div class="relative z-10">
+      <!-- Floating orbs for 3D effect -->
+      <div class="floating-orb top-1/4 left-1/4" style="animation-delay: 0s;"></div>
+      <div class="floating-orb top-1/3 right-1/4" style="animation-delay: 1s;"></div>
+      <div class="floating-orb bottom-1/4 right-1/3" style="animation-delay: 2s;"></div>
+      <div class="floating-orb bottom-1/3 left-1/3" style="animation-delay: 3s;"></div>
+      <div class="container mx-auto px-4 footer-content">
+        <div class="flex flex-wrap justify-between">
+          <!-- Company Info -->
+          <div class="w-full md:w-1/4 lg:w-1/5 mb-8">
+            <h3 class="text-2xl font-bold mb-4 transform hover:rotate-1 transition-transform duration-300">3D<span class="text-purple-300">Wave</span></h3>
+            <p class="mb-4 opacity-90 leading-relaxed">Creating immersive digital experiences with depth and dimension for the modern web.</p>
+            <div class="flex space-x-4 mt-6">
+              <a href="#" class="social-icon text-white text-xl w-10 h-10 flex items-center justify-center rounded-full bg-purple-700 hover:bg-purple-600">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="#" class="social-icon text-white text-xl w-10 h-10 flex items-center justify-center rounded-full bg-purple-700 hover:bg-purple-600">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#" class="social-icon text-white text-xl w-10 h-10 flex items-center justify-center rounded-full bg-purple-700 hover:bg-purple-600">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="#" class="social-icon text-white text-xl w-10 h-10 flex items-center justify-center rounded-full bg-purple-700 hover:bg-purple-600">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+            </div>
+          </div>
+          <!-- Quick Links -->
+          <div class="w-full sm:w-1/2 md:w-1/4 lg:w-1/6 mb-8">
+            <h4 class="text-lg font-semibold mb-4 border-b border-purple-400 pb-2">Pages</h4>
+            <ul>
+              <li class="mb-2 link-item">
+                <a href="#" class="opacity-90 hover:opacity-100 hover:text-purple-200">Home</a>
+              </li>
+              <li class="mb-2 link-item">
+                <a href="#" class="opacity-90 hover:opacity-100 hover:text-purple-200">Our Services</a>
+              </li>
+              <li class="mb-2 link-item">
+                <a href="#" class="opacity-90 hover:opacity-100 hover:text-purple-200">Electrical Work</a>
+              </li>
+              <li class="mb-2 link-item">
+                <a href="#" class="opacity-90 hover:opacity-100 hover:text-purple-200">About Us</a>
+              </li>
+              <li class="mb-2 link-item">
+                <a href="#" class="opacity-90 hover:opacity-100 hover:text-purple-200">Contact Us</a>
+              </li>
+            </ul>
+          </div>
+          <!-- Services -->
+          <div class="w-full sm:w-1/2 md:w-1/4 lg:w-1/6 mb-8">
+            <h4 class="text-lg font-semibold mb-4 border-b border-purple-400 pb-2">Services</h4>
+            <ul>
+              <li class="mb-2 link-item">
+                <a href="#" class="opacity-90 hover:opacity-100 hover:text-purple-200">Portfolio</a>
+              </li>
+              <li class="mb-2 link-item">
+                <a href="#" class="opacity-90 hover:opacity-100 hover:text-purple-200">Electrical Wiring</a>
+              </li>
+              <li class="mb-2 link-item">
+                <a href="#" class="opacity-90 hover:opacity-100 hover:text-purple-200">Fiber Optics</a>
+              </li>
+              <li class="mb-2 link-item">
+                <a href="#" class="opacity-90 hover:opacity-100 hover:text-purple-200">Consultation</a>
+              </li>
+              <li class="mb-2 link-item">
+                <a href="#" class="opacity-90 hover:opacity-100 hover:text-purple-200">Building Electrical</a>
+              </li>
+            </ul>
+          </div>
+          <!-- Newsletter -->
+          <div class="w-full md:w-1/3 lg:w-1/4 mb-8">
+            <h4 class="text-lg font-semibold mb-4 border-b border-purple-400 pb-2">Electrical Wiring</h4>
+            <p class="mb-4 opacity-90 leading-relaxed">With the latest technology in the world</p>
+            <div class="flex">
+              <input type="email" placeholder="Your email" class="flex-grow newsletter-input px-4 py-2 rounded-l-lg focus:outline-none bg-white bg-opacity-20 text-white placeholder-purple-200 focus:bg-opacity-30">
+              <button class="submit-btn bg-purple-600 hover:bg-purple-500 px-4 py-2 rounded-r-lg font-medium transition-colors">
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- Copyright -->
+        <div class="pt-8 mt-8 border-t border-purple-700 text-center opacity-80">
+          <p>© All rights reserved.</p>
+        </div>
+      </div>
+      <!-- 3D Shadow Effect -->
+      <div class="footer-shadow"></div>
+    </div>
+  </footer>
+  <style>
+    .footer-3d { position: relative; }
+    .floating-orb { position: absolute; width: 100px; height: 100px; background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%); border-radius: 50%; filter: blur(10px); opacity: 0.3; animation: float 8s ease-in-out infinite; z-index: -1; }
+    @keyframes float { 0%, 100% { transform: translate(0, 0) translateZ(0); } 25% { transform: translate(20px, -10px) translateZ(10px); } 50% { transform: translate(0, -20px) translateZ(20px); } 75% { transform: translate(-20px, -10px) translateZ(10px); } }
+    .footer-content { position: relative; z-index: 10; }
+    .social-icon { transition: all 0.3s ease; transform-style: preserve-3d; }
+    .social-icon:hover { transform: translateY(-5px) rotateX(20deg) scale(1.1); }
+    .link-item { position: relative; transition: all 0.3s ease; }
+    .link-item:hover { transform: translateX(5px) translateZ(10px); }
+    .link-item:after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: currentColor; transition: width 0.3s ease; }
+    .link-item:hover:after { width: 100%; }
+    .newsletter-input { transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+    .newsletter-input:focus { transform: translateZ(10px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
+    .submit-btn { transition: all 0.3s ease; transform-style: preserve-3d; box-shadow: 0 5px 15px rgba(234, 179, 8, 0.3); }
+    .submit-btn:hover { transform: translateY(-5px) translateZ(10px); box-shadow: 0 15px 30px rgba(234, 179, 8, 0.4); }
+  </style>
+  <script>
+    // Add 3D tilt effect on mouse move
+    document.addEventListener('mousemove', function(e) {
+      const footer = document.querySelector('.footer-3d');
+      const bodyWidth = document.body.clientWidth;
+      const bodyHeight = document.body.clientHeight;
+      const rect = footer.getBoundingClientRect();
+      if (e.clientY < rect.top) return;
+      const xPos = (e.clientX / bodyWidth) * 2 - 1;
+      const yPos = (e.clientY / bodyHeight) * 2 - 1;
+      footer.style.transform = `rotateY(${-xPos * 5}deg) rotateX(${yPos * 5}deg)`;
+      const content = document.querySelector('.footer-content');
+      content.style.transform = `translateZ(${30 + (Math.abs(xPos) + Math.abs(yPos)) * 10}px)`;
+    });
+    document.querySelector('.footer-3d').addEventListener('mouseleave', function() {
+      this.style.transform = 'none';
+      document.querySelector('.footer-content').style.transform = 'translateZ(30px)';
+    });
+    let startX, startY;
+    document.querySelector('.footer-3d').addEventListener('touchstart', function(e) {
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+    });
+    document.querySelector('.footer-3d').addEventListener('touchmove', function(e) {
+      if (!startX || !startY) return;
+      const xDiff = startX - e.touches[0].clientX;
+      const yDiff = startY - e.touches[0].clientY;
+      if (Math.abs(xDiff) > Math.abs(yDiff)) {
+        e.preventDefault();
+        const bodyWidth = document.body.clientWidth;
+        const xPos = (e.touches[0].clientX / bodyWidth) * 2 - 1;
+        this.style.transform = `rotateY(${-xPos * 10}deg)`;
+      }
+    });
+    document.querySelector('.footer-3d').addEventListener('touchend', function() {
+      this.style.transform = 'none';
+      startX = null;
+      startY = null;
+    });
+  </script>
+</body>
+</html> 

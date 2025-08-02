@@ -1,0 +1,4377 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>خدمات برقکاری مدرن</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+
+    <!-- فونت Vazirmatn -->
+    <link
+      href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/fonts.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <!-- AOS (Animate On Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Three.js CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<!-- GSAP CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.2/gsap.min.js"></script>
+<!-- AOS CDN -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+           
+        
+
+    <style>
+       body {
+            font-family: "Vazirmatn", sans-serif;
+            background-color: #1a0933;
+            
+            color: white;
+            overflow-x: hidden;
+        }
+        .header-gradient {
+  background: linear-gradient(90deg, #3b1e6e 0%, #6b21a8 100%);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  backdrop-filter: blur(12px);
+  position: relative;
+  overflow: visible;
+}
+        /* استایل بخش خدمات */
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .hero-section {
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+        }
+
+        .wave-divider {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            transform: rotate(180deg);
+        }
+
+        .wave-bottom {
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+
+        .wave-bottom svg {
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 30px;
+        }
+
+        .wave-bottom .shape-fill {
+            fill: rgba(138, 43, 226, 0.3);
+        }
+
+        .swiper {
+            width: 300px;
+            height: 300px;
+        }
+
+        .swiper-slide {
+            background-color: #444;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            color: #fff;
+        }
+
+        .gradient-text {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            background-image: linear-gradient(90deg, #3B82F6, #10B981);
+        }
+        
+        .three-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.8;
+        }
+        
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+        }
+        
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .hero-pattern {
+            background-image: radial-gradient(rgba(59, 130, 246, 0.2) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .nav-item {
+            @apply flex items-center px-3 py-2 rounded-md hover:bg-white/10 transition-colors;
+        }
+
+        .mobile-item {
+            @apply block px-3 py-3 rounded-md hover:bg-white/10 transition-colors;
+        }
+
+        /* استایل‌های بخش خدمات */
+        .flip-service-card {
+            perspective: 1000px;
+        }
+        
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        
+        .flip-service-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .flip-card-back {
+            transform: rotateY(180deg);
+        }
+        
+        #three-d-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.15;
+        }
+        
+        @keyframes floating-effect {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .pulse-effect {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        /* استایل‌های کارت‌های خدمات */
+       /* پالت رسمی-آکادمیک با ترکیب رنگ‌های هاروارد و مهندسی */
+.card-gradient-1 {
+    background: linear-gradient(135deg, #2f105e 0%, #240c47 100%);
+    /* آبی تیره + فیروزه‌ای */
+}
+
+.card-gradient-2 {
+    background: linear-gradient(135deg, #39028b 0%, #2C3E50 100%);
+    /* آبی آسمانی + آبی تیره */
+}
+
+.card-gradient-3 {
+    background: linear-gradient(135deg, #0b5485 0%, #1a0933 100%);
+    /* آبی متوسط + آبی روشن */
+}
+/* پالت ایرانی-مدرن */
+.card-gradient-4 {
+    background: linear-gradient(135deg, #0B5563 0%, #300275 100%);
+    /* فیروزه‌ای + زرشکی */
+}
+
+.card-gradient-5 {
+    background: linear-gradient(135deg, #41039e 0%, #222222 100%);
+    /* طلایی خاکی + مشکی */
+}
+
+.card-gradient-6 {
+    background: linear-gradient(135deg, #220153 0%, #122d6b 100%);
+    /* سرخابی + آبی (گرادین دوطرفه) */
+}
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .model-container {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto;
+        }
+
+        /* استایل‌های مودال */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.9);
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            animation: zoom 0.6s;
+        }
+
+        @keyframes zoom {
+            from {transform: scale(0.1)}
+            to {transform: scale(1)}
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .close:hover {
+            color: #f59e0b;
+            cursor: pointer;
+        }
+
+        .portfolio-item {
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease;
+            transform: perspective(1000px) rotateY(0deg);
+        }
+
+        .portfolio-item:hover {
+            transform: perspective(1000px) rotateY(-5deg) scale(1.02);
+        }
+
+        /* استایل‌های فوتر */
+        .social-icon {
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-5px) rotateX(20deg) scale(1.1);
+        }
+        
+        .link-item {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .link-item:hover {
+            transform: translateX(5px) translateZ(10px);
+        }
+        
+        .link-item:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: currentColor;
+            transition: width 0.3s ease;
+        }
+        
+        .link-item:hover:after {
+            width: 100%;
+        }
+        
+        .newsletter-input {
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .newsletter-input:focus {
+            transform: translateZ(10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .submit-btn {
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px) rotateX(10deg);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .floating-orb {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+            border-radius: 50%;
+            filter: blur(10px);
+            opacity: 0.3;
+            animation: float 8s ease-in-out infinite;
+            z-index: -1;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) translateZ(0);
+            }
+            25% {
+                transform: translate(20px, -10px) translateZ(10px);
+            }
+            50% {
+                transform: translate(0, -20px) translateZ(20px);
+            }
+            75% {
+                transform: translate(-20px, -10px) translateZ(10px);
+            }
+        }
+
+        /* استایل‌های بخش درباره ما */
+        .about-3d-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(236, 201, 75, 0.15);
+        }
+        
+        .about-feature-icon {
+            animation: float-animation 6s ease-in-out infinite;
+        }
+        
+        @keyframes float-animation {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .about-feature-icon:nth-child(2) {
+            animation-delay: 1s;
+        }
+        
+        .about-feature-icon:nth-child(3) {
+            animation-delay: 2s;
+        }
+        
+        .about-feature-card {
+            transition: all 0.3s ease;
+            background: linear-gradient(to bottom right, #2a1b4d, #3a2b5d);
+        }
+        
+        .about-feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(236, 201, 75, 0.2);
+        }
+        .social-icon {
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-5px) rotateX(20deg) scale(1.1);
+        }
+        
+        .link-item {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .link-item:hover {
+            transform: translateX(5px) translateZ(10px);
+        }
+        
+        .link-item:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: currentColor;
+            transition: width 0.3s ease;
+        }
+        
+        .link-item:hover:after {
+            width: 100%;
+        }
+        
+        .newsletter-input {
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .newsletter-input:focus {
+            transform: translateZ(10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .submit-btn {
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px) rotateX(10deg);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .floating-orb {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+            border-radius: 50%;
+            filter: blur(10px);
+            opacity: 0.3;
+            animation: float 8s ease-in-out infinite;
+            z-index: -1;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) translateZ(0);
+            }
+            25% {
+                transform: translate(20px, -10px) translateZ(10px);
+            }
+            50% {
+                transform: translate(0, -20px) translateZ(20px);
+            }
+            75% {
+                transform: translate(-20px, -10px) translateZ(10px);
+            }
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .footer-3d {
+                transform: none !important;
+            }
+            
+            .footer-content {
+                transform: none !important;
+            }
+        }
+        .contact-card {
+                                transform-style: preserve-3d;
+                                transition: all 0.5s ease;
+                                perspective: 1000px;
+                                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+                            }
+                            
+                            .contact-card:hover {
+                                transform: translateY(-10px) rotateX(5deg) rotateY(-5deg);
+                                box-shadow: 0 30px 50px rgba(0, 0, 0, 0.4);
+                            }
+                            
+                            .floating {
+                                animation: floating 6s ease-in-out infinite;
+                            }
+                            
+                            @keyframes floating {
+                                0% { transform: translateY(0px) rotate(0deg); }
+                                50% { transform: translateY(-20px) rotate(2deg); }
+                                100% { transform: translateY(0px) rotate(0deg); }
+                            }
+                            
+                            .input-field {
+                                transition: all 0.3s ease;
+                                transform-style: preserve-3d;
+                                backface-visibility: visible;
+                            }
+                            
+                            .input-field:focus {
+                                transform: translateZ(15px);
+                                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+                            }
+                            
+                            .contact-icon {
+                                transition: all 0.3s ease;
+                                transform-style: preserve-3d;
+                            }
+                            
+                            .contact-icon:hover {
+                                transform: translateZ(10px) rotateY(10deg);
+                                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+                            }
+                            
+                            .submit-btn {
+                                transition: all 0.3s ease;
+                                transform-style: preserve-3d;
+                                box-shadow: 0 5px 15px rgba(234, 179, 8, 0.3);
+                            }
+                            
+                            .submit-btn:hover {
+                                transform: translateY(-5px) translateZ(10px);
+                                box-shadow: 0 15px 30px rgba(234, 179, 8, 0.4);
+                            }
+                            
+                           
+    </style>
+  </head>
+  <body class="scroll-smooth">
+   
+
+
+<section class="relative min-h-screen flex flex-col items-center justify-center bg-[#1a0933] overflow-hidden">
+  <!-- Responsive Navbar -->
+  <nav class="absolute top-0 left-0 w-full flex items-center justify-between px-4 md:px-10 py-4 md:py-6 z-20 bg-transparent">
+    <div class="flex items-center gap-2">
+      <img src="logo.svg" alt="logo" class="h-8" />
+      <span class="text-white text-2xl font-bold">Object</span>
+    </div>
+    <!-- Desktop Menu -->
+    <div class="hidden md:flex gap-6 items-center">
+      <a href="#" class="text-white/80 font-medium px-4 py-2 rounded-lg hover:bg-white/10 transition">Home</a>
+      <a href="#" class="text-white/80 font-medium px-4 py-2 rounded-lg hover:bg-white/10 transition">Features</a>
+      <a href="#" class="text-white/80 font-medium px-4 py-2 rounded-lg hover:bg-white/10 transition">About</a>
+      <button class="bg-white text-[#1a0c2e] font-bold px-5 py-2 rounded-full shadow hover:bg-gray-100 transition ml-2">Get Started</button>
+    </div>
+    <!-- Hamburger Icon -->
+    <button id="mobile-menu-toggle" class="md:hidden flex items-center px-3 py-2 text-white focus:outline-none">
+      <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 8h16M4 16h16" />
+      </svg>
+    </button>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed top-0 left-0 w-full h-full bg-[#1a0933] bg-opacity-95 flex flex-col items-center justify-center gap-8 z-50 transition-all duration-300 invisible opacity-0 md:hidden">
+      <a href="#" class="text-white text-2xl font-bold hover:text-purple-200 transition">Home</a>
+      <a href="#" class="text-white text-2xl font-bold hover:text-purple-200 transition">Features</a>
+      <a href="#" class="text-white text-2xl font-bold hover:text-purple-200 transition">About</a>
+      <button class="bg-white text-[#1a0c2e] font-bold px-8 py-3 rounded-full shadow hover:bg-gray-100 transition">Get Started</button>
+      <button id="mobile-menu-close" class="absolute top-6 right-6 z-20">
+        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  </nav>
+  <!-- Hero Content -->
+  <div class="flex flex-col items-center justify-center mt-36 md:mt-48 z-10 px-2 w-full">
+    <style>
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes fadeOut {
+        from { opacity: 1; transform: translateY(0); }
+        to { opacity: 0; transform: translateY(-10px); }
+      }
+      .text-fade-in {
+        animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+      .text-fade-out {
+        animation: fadeOut 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+      .text-gradient {
+        background: linear-gradient(to right, #3b82f6, #6366f1, #8b5cf6);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      .expert-gradient {
+        background: linear-gradient(to right, #10b981, #3b82f6);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+    </style>
+    
+    <!-- Add AOS CSS -->
+    <link href="https://cdn.rawgit.com/michalsnik/aos/2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <div class="flex flex-col items-center justify-center  py-12 px-4 text-center">
+      <div data-aos="fade-up" data-aos-duration="800" class="max-w-4xl mx-auto">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+          Creating exceptional <span id="morphingText" class="text-gradient"></span> solutions
+        </h1>
+        <p class="text-lg md:text-xl text-gray-600 mb-8 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+          Professional digital experiences tailored to your business needs
+        </p>
+        <div data-aos="fade-up" data-aos-delay="400">
+          <p class="text-xl md:text-2xl mb-2">Meet your expert</p>
+          <h2 class="text-2xl md:text-3xl font-bold expert-gradient">Farzan Sabouri</h2>
+          <p class="text-gray-500 mt-2">Senior Web Development Specialist</p>
+        </div>
+        <button class="mt-8 bg-gradient-to-r from-[#3b82f6] to-[#6366f1] text-white font-bold px-8 py-3 md:px-12 md:py-4 rounded-full shadow-xl hover:from-[#6366f1] hover:to-[#3b82f6] transition-all transform hover:scale-105 text-lg md:text-xl" data-aos="zoom-in" data-aos-delay="600">
+          Contact Expert
+        </button>
+      </div>
+    </div>
+    
+    <!-- Add AOS JS and initialize -->
+    <script src="https://cdn.rawgit.com/michalsnik/aos/2.3.1/dist/aos.js"></script>
+    <script>
+      // Initialize AOS
+      document.addEventListener('DOMContentLoaded', function() {
+        AOS.init({
+          duration: 800,
+          once: true
+        });
+        
+        // Morphing text functionality
+        const texts = [
+          "web",
+          "mobile",
+          "e-commerce",
+          "responsive",
+          "interactive",
+          "scalable",
+          "innovative"
+        ];
+        
+        class MorphingText {
+          constructor(elementId, texts, options = {}) {
+            this.element = document.getElementById(elementId);
+            this.texts = texts;
+            this.currentIndex = 0;
+            this.isAnimating = false;
+            this.options = {
+              delay: 2000,
+              animationDuration: 500,
+              ...options
+            };
+            
+            this.init();
+          }
+          
+          init() {
+            this.element.textContent = this.texts[this.currentIndex];
+            this.element.classList.add('text-fade-in');
+            
+            setTimeout(() => {
+              this.startCycle();
+            }, this.options.delay);
+          }
+          
+          startCycle() {
+            setInterval(() => {
+              if (!this.isAnimating) {
+                this.animateText();
+              }
+            }, this.options.delay);
+          }
+          
+          animateText() {
+            this.isAnimating = true;
+            
+            // Fade out current text
+            this.element.classList.remove('text-fade-in');
+            this.element.classList.add('text-fade-out');
+            
+            setTimeout(() => {
+              // Change text
+              this.currentIndex = (this.currentIndex + 1) % this.texts.length;
+              this.element.textContent = this.texts[this.currentIndex];
+              
+              // Fade in new text
+              this.element.classList.remove('text-fade-out');
+              this.element.classList.add('text-fade-in');
+              
+              this.isAnimating = false;
+            }, this.options.animationDuration);
+          }
+        }
+        
+        new MorphingText('morphingText', texts, {
+          delay: 2000,
+          animationDuration: 500
+        });
+      });
+    </script>
+  <!-- Meteor/Star Canvas -->
+  <canvas id="meteor-canvas" class="absolute left-0 top-0 w-full h-full z-10 pointer-events-none"></canvas>
+  <!-- 3D Object Canvas -->
+  <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] z-0 pointer-events-none">
+    <canvas id="object-3d-canvas" class="w-full h-full"></canvas>
+  </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // 3D Object (neutral/white, no purple)
+  const canvas = document.getElementById('object-3d-canvas');
+  if (canvas) {
+    const width = 600, height = 600;
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+    renderer.setSize(width, height);
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(60, width/height, 0.1, 1000);
+    camera.position.set(0, 0, 8);
+
+    // Neutral/white modern material
+    const geometry = new THREE.TorusKnotGeometry(2, 0.6, 150, 20);
+  
+    const mesh = new THREE.Mesh(geometry, material);
+    scene.add(mesh);
+
+    // Lights
+    scene.add(new THREE.AmbientLight(0xffffff, 0.8));
+    const white = new THREE.PointLight(0xffffff, 1.2, 100);
+    white.position.set(0, 10, 20);
+    scene.add(white);
+    const blue = new THREE.PointLight(0x6ec6ff, 0.7, 100);
+    blue.position.set(0, -10, 20);
+    scene.add(blue);
+
+    // Animate with scroll
+    let scrollY = 0;
+    window.addEventListener('scroll', () => {
+      scrollY = window.scrollY;
+    });
+
+    function animate() {
+      requestAnimationFrame(animate);
+      mesh.rotation.x += 0.01 + scrollY * 0.00005;
+      mesh.rotation.y += 0.012 + scrollY * 0.00005;
+      renderer.render(scene, camera);
+    }
+    animate();
+  }
+
+  // Meteor/Star Canvas (optimized)
+  const meteorCanvas = document.getElementById('meteor-canvas');
+  const ctx = meteorCanvas.getContext('2d');
+  function resizeMeteorCanvas() {
+    meteorCanvas.width = window.innerWidth;
+    meteorCanvas.height = window.innerHeight;
+  }
+  resizeMeteorCanvas();
+  window.addEventListener('resize', resizeMeteorCanvas);
+
+  // Use a single array for both stars and meteors for better memory
+  const stars = Array.from({length: 100}, () => ({
+    x: Math.random() * window.innerWidth,
+    y: Math.random() * window.innerHeight,
+    r: Math.random() * 1.1 + 0.3,
+    alpha: Math.random() * 0.5 + 0.5
+  }));
+  const meteors = [];
+  const METEOR_COUNT = 4;
+
+  function spawnMeteor() {
+    meteors.push({
+      x: Math.random() * window.innerWidth,
+      y: -40,
+      len: Math.random() * 60 + 60,
+      speed: Math.random() * 5 + 5,
+      angle: Math.PI / 3 + Math.random() * 0.18,
+      alpha: 1
+    });
+    if (meteors.length > METEOR_COUNT) meteors.shift();
+  }
+  setInterval(spawnMeteor, 1100);
+
+  function draw() {
+    ctx.clearRect(0, 0, meteorCanvas.width, meteorCanvas.height);
+    // ستاره‌ها
+    for (const s of stars) {
+      ctx.save();
+      ctx.globalAlpha = s.alpha;
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, 2 * Math.PI);
+      ctx.fillStyle = '#fff';
+      ctx.shadowColor = '#fff';
+      ctx.shadowBlur = 7;
+      ctx.fill();
+      ctx.restore();
+    }
+    // شهاب‌سنگ‌ها
+    for (const m of meteors) {
+      ctx.save();
+      ctx.globalAlpha = m.alpha;
+      ctx.strokeStyle = 'rgba(255,255,255,0.85)';
+      ctx.lineWidth = 2;
+      ctx.shadowColor = '#fff';
+      ctx.shadowBlur = 12;
+      ctx.beginPath();
+      ctx.moveTo(m.x, m.y);
+      ctx.lineTo(
+        m.x - Math.cos(m.angle) * m.len,
+        m.y - Math.sin(m.angle) * m.len
+      );
+      ctx.stroke();
+      ctx.restore();
+      m.x += Math.cos(m.angle) * m.speed;
+      m.y += Math.sin(m.angle) * m.speed;
+      m.alpha -= 0.009;
+    }
+    for (let i = meteors.length - 1; i >= 0; i--) {
+      if (meteors[i].alpha <= 0) meteors.splice(i, 1);
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+});
+</script>
+
+<script>
+function resizeMeteorCanvas() {
+    const meteorCanvas = document.getElementById('meteor-canvas');
+    meteorCanvas.width = window.innerWidth;
+    meteorCanvas.height = window.innerHeight;
+}
+resizeMeteorCanvas();
+window.addEventListener('resize', resizeMeteorCanvas);
+
+const meteorCanvas = document.getElementById('meteor-canvas');
+const ctx = meteorCanvas.getContext('2d');
+
+const stars = [];
+const meteors = [];
+const STAR_COUNT = 120;
+const METEOR_COUNT = 5;
+
+// ستاره‌های ثابت
+for (let i = 0; i < STAR_COUNT; i++) {
+    stars.push({
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        r: Math.random() * 1.2 + 0.3,
+        alpha: Math.random() * 0.5 + 0.5
+    });
+}
+
+// شهاب‌سنگ‌ها
+function spawnMeteor() {
+    meteors.push({
+        x: Math.random() * window.innerWidth,
+        y: -40,
+        len: Math.random() * 80 + 80,
+        speed: Math.random() * 6 + 6,
+        angle: Math.PI / 3 + Math.random() * 0.2,
+        alpha: 1
+    });
+    if (meteors.length > METEOR_COUNT) meteors.shift();
+}
+setInterval(spawnMeteor, 900);
+
+function draw() {
+    ctx.clearRect(0, 0, meteorCanvas.width, meteorCanvas.height);
+
+    // ستاره‌ها
+    for (const s of stars) {
+        ctx.save();
+        ctx.globalAlpha = s.alpha;
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, 2 * Math.PI);
+        ctx.fillStyle = '#fff';
+        ctx.shadowColor = '#fff';
+        ctx.shadowBlur = 8;
+        ctx.fill();
+        ctx.restore();
+    }
+
+    // شهاب‌سنگ‌ها
+    for (const m of meteors) {
+        ctx.save();
+        ctx.globalAlpha = m.alpha;
+        ctx.strokeStyle = 'rgba(255,200,255,0.8)';
+        ctx.lineWidth = 2.2;
+        ctx.shadowColor = '#ffb3fa';
+        ctx.shadowBlur = 16;
+        ctx.beginPath();
+        ctx.moveTo(m.x, m.y);
+        ctx.lineTo(
+            m.x - Math.cos(m.angle) * m.len,
+            m.y - Math.sin(m.angle) * m.len
+        );
+        ctx.stroke();
+        ctx.restore();
+
+        m.x += Math.cos(m.angle) * m.speed;
+        m.y += Math.sin(m.angle) * m.speed;
+        m.alpha -= 0.008;
+    }
+    // حذف شهاب‌سنگ‌های محو شده
+    for (let i = meteors.length - 1; i >= 0; i--) {
+        if (meteors[i].alpha <= 0) meteors.splice(i, 1);
+    }
+
+    requestAnimationFrame(draw);
+}
+draw();
+</script>
+  <!-- Hero Section -->
+  <section class="relative flex items-center justify-center pt-0 px-6 lg:px-12 hero-pattern">
+
+  <div>
+    <svg fill="none" viewBox="0 0 2694 920" xmlns="http://www.w3.org/2000/svg" 
+    class="absolute z-[100] left-1/2 top-[calc(100%_-_4px)] w-[190vw] min-w-[2400px] -translate-x-1/2 lg:-translate-y-72 sm:-translate-y-82 md:top-[calc(100%_+_58px)] md:min-w-[2800px] lg:top-[calc(100%_+_96px)]" 
+    style="opacity: 0.28; mask-image: linear-gradient(rgb(200, 201, 204), transparent 45%);">
+ <path d="m2691.9 918.98h-2689.9c29.122-226.41 158.94-446.87 389.46-620.27 527.71-396.95 1383.3-396.95 1911 0 230.52 173.4 360.35 393.86 389.47 620.27z" fill="url(#gradient)" />
+ <defs>
+   <linearGradient id="gradient" x1="1346.02" y1="55.674" x2="1346.02" y2="918.98" gradientUnits="userSpaceOnUse">
+     <stop stop-color="#a259e6" />
+     <stop offset="1" stop-color="#7b2ff2" stop-opacity="0.9" />
+   </linearGradient>
+ </defs>
+</svg>
+  </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="relative py-20 px-4 md:px-8 max-w-7xl mx-auto overflow-hidden mt-24">
+    <!-- Enhanced Background Elements -->
+    <div class="absolute inset-0 bg-gradient-to-br from-purple-900/30 via-blue-900/20 to-indigo-900/30 rounded-3xl"></div>
+    <div class="absolute -top-20 -right-20 w-40 h-40 md:w-60 md:h-60 bg-gradient-to-br from-yellow-400 to-orange-500 opacity-15 rounded-full filter blur-xl animate-pulse"></div>
+    <div class="absolute -bottom-20 -left-20 w-60 h-60 md:w-80 md:h-80 bg-gradient-to-br from-purple-600 to-pink-600 opacity-15 rounded-full filter blur-xl animate-pulse"></div>
+    <!-- Additional floating elements -->
+    <div class="absolute top-1/3 left-10 w-20 h-20 bg-gradient-to-br from-cyan-400 to-blue-500 opacity-10 rounded-full filter blur-lg animate-bounce"></div>
+    <div class="absolute bottom-1/3 right-10 w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-500 opacity-10 rounded-full filter blur-lg animate-bounce"></div>
+    
+    <!-- Enhanced Section Header -->
+    <div class="text-center mb-16 relative z-10" data-aos="fade-down">
+      <div class="inline-flex items-center justify-center w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full mb-6 shadow-lg">
+        <i class="fas fa-star text-white text-2xl md:text-3xl"></i>
+      </div>
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-yellow-400 via-orange-400 to-red-500 bg-clip-text text-transparent mb-4">
+        Our Professional Services
+      </h2>
+      <p class="text-lg md:text-xl lg:text-2xl text-gray-300 max-w-4xl mx-auto mb-8 leading-relaxed">
+        Discover our comprehensive range of <span class="text-yellow-400 font-semibold">electrical</span>, 
+        <span class="text-blue-400 font-semibold">installation</span>, and 
+        <span class="text-green-400 font-semibold">smart home</span> services
+      </p>
+      <div class="w-32 h-1 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 mx-auto rounded-full shadow-lg"></div>
+    </div>
+
+          <!-- Marquee Services -->
+      <div class="relative flex w-full flex-col items-center justify-center overflow-hidden py-8 md:py-12 z-10 max-w-full">
+              <!-- Row 1 - Electrical Services -->
+        <div class="mb-12 w-full overflow-hidden">
+          <div class="text-center mb-8" data-aos="fade-up" data-aos-delay="200">
+            <div class="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full mb-4 shadow-lg">
+              <i class="fas fa-bolt text-white text-lg md:text-2xl"></i>
+            </div>
+            <h3 class="text-2xl md:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent mb-2">
+              Electrical Services
+            </h3>
+            <p class="text-gray-400 text-sm md:text-base">Professional electrical solutions</p>
+          </div>
+                  <div id="marquee1" class="flex gap-1 sm:gap-2 md:gap-3 lg:gap-6 animate-marquee w-full" style="--cards-to-show: 4;">
+          <!-- Cards will be added by JS -->
+        </div>
+      </div>
+      
+      <!-- Row 2 - Installation & Repair Services -->
+      <div class="mb-12 w-full overflow-hidden">
+        <div class="text-center mb-8" data-aos="fade-up" data-aos-delay="400">
+          <div class="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-full mb-4 shadow-lg">
+            <i class="fas fa-tools text-white text-lg md:text-2xl"></i>
+          </div>
+          <h3 class="text-2xl md:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-blue-400 to-cyan-500 bg-clip-text text-transparent mb-2">
+            Installation & Repair Services
+          </h3>
+          <p class="text-gray-400 text-sm md:text-base">Expert installation and maintenance</p>
+        </div>
+        <div id="marquee2" class="flex gap-1 sm:gap-2 md:gap-3 lg:gap-6 animate-marquee-reverse w-full" style="--cards-to-show: 4;">
+          <!-- Cards will be added by JS -->
+        </div>
+      </div>
+      
+      <!-- Row 3 - Smart Home Services -->
+      <div class="mb-12 w-full overflow-hidden">
+        <div class="text-center mb-8" data-aos="fade-up" data-aos-delay="600">
+          <div class="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full mb-4 shadow-lg">
+            <i class="fas fa-home text-white text-lg md:text-2xl"></i>
+          </div>
+          <h3 class="text-2xl md:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent mb-2">
+            Smart Home Services
+          </h3>
+          <p class="text-gray-400 text-sm md:text-base">Modern smart home solutions</p>
+        </div>
+        <div id="marquee3" class="flex gap-1 sm:gap-2 md:gap-3 lg:gap-6 animate-marquee w-full" style="--cards-to-show: 4;">
+          <!-- Cards will be added by JS -->
+        </div>
+        </div>
+      
+      <!-- Gradient Fade Effects -->
+      <div class="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-[#1a0933] to-transparent"></div>
+      <div class="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-[#1a0933] to-transparent"></div>
+    </div>
+
+    <!-- Enhanced Call to Action -->
+    <div class="text-center mt-20 relative z-10" data-aos="fade-up" data-aos-delay="800">
+      <div class="bg-gradient-to-r from-yellow-400/10 to-orange-500/10 backdrop-blur-md rounded-2xl p-8 border border-yellow-400/20">
+        <h3 class="text-2xl md:text-3xl font-bold text-white mb-4">Ready to Get Started?</h3>
+        <p class="text-gray-300 mb-6 max-w-2xl mx-auto">
+          Contact us today for professional electrical, installation, and smart home services. 
+          We're here to bring your vision to life!
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <button class="bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-bold px-8 py-4 rounded-full shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 text-lg group">
+            <i class="fas fa-phone mr-2 group-hover:rotate-12 transition-transform duration-300"></i>
+            Contact Us Today
+          </button>
+          <button class="bg-gradient-to-r from-blue-400 to-cyan-500 text-white font-bold px-8 py-4 rounded-full shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 text-lg group">
+            <i class="fas fa-calendar-alt mr-2 group-hover:rotate-12 transition-transform duration-300"></i>
+            Schedule Consultation
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+<style>
+  @tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-100% / var(--cards-to-show, 4))); }
+}
+@keyframes marquee-reverse {
+  0% { transform: translateX(calc(-100% / var(--cards-to-show, 4))); }
+  100% { transform: translateX(0); }
+}
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+.animate-marquee-reverse {
+  animation: marquee-reverse 30s linear infinite;
+}
+
+/* ===== OPTIMIZED MARQUEE ANIMATIONS ===== */
+/* Performance-optimized animation speeds with will-change */
+@media (min-width: 1024px) {
+  .animate-marquee {
+    animation: marquee 15s linear infinite;
+    will-change: transform; /* Performance optimization */
+  }
+  .animate-marquee-reverse {
+    animation: marquee-reverse 15s linear infinite;
+    will-change: transform;
+  }
+}
+
+@media (max-width: 1023px) and (min-width: 769px) {
+  .animate-marquee {
+    animation: marquee 12s linear infinite;
+    will-change: transform;
+  }
+  .animate-marquee-reverse {
+    animation: marquee-reverse 12s linear infinite;
+    will-change: transform;
+  }
+}
+
+@media (max-width: 768px) {
+  .animate-marquee {
+    animation: marquee 4s linear infinite;
+    will-change: transform;
+  }
+  .animate-marquee-reverse {
+    animation: marquee-reverse 4s linear infinite;
+    will-change: transform;
+  }
+}
+
+@media (max-width: 480px) {
+  .animate-marquee {
+    animation: marquee 3s linear infinite;
+    will-change: transform;
+  }
+  .animate-marquee-reverse {
+    animation: marquee-reverse 3s linear infinite;
+    will-change: transform;
+  }
+}
+
+@media (max-width: 375px) {
+  .animate-marquee {
+    animation: marquee 2.5s linear infinite;
+    will-change: transform;
+  }
+  .animate-marquee-reverse {
+    animation: marquee-reverse 2.5s linear infinite;
+    will-change: transform;
+  }
+}
+
+/* Mobile-specific optimizations */
+@media (max-width: 640px) {
+  .service-card {
+    min-width: 200px;
+    max-width: 220px;
+  }
+  
+  .glass-card {
+    min-width: 200px;
+    max-width: 220px;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 375px) {
+  .service-card {
+    min-width: 180px;
+    max-width: 200px;
+  }
+  
+  .glass-card {
+    min-width: 180px;
+    max-width: 200px;
+  }
+}
+
+/* Large screen optimizations - prevent overflow */
+@media (min-width: 1024px) {
+  .service-card {
+    max-width: 350px;
+    flex-shrink: 0;
+  }
+  
+  .glass-card {
+    max-width: 350px;
+    flex-shrink: 0;
+  }
+}
+
+@media (min-width: 1280px) {
+  .service-card {
+    max-width: 400px;
+  }
+  
+  .glass-card {
+    max-width: 400px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .service-card {
+    max-width: 450px;
+  }
+  
+  .glass-card {
+    max-width: 450px;
+  }
+}
+
+/* Mobile optimizations - show 3 cards */
+@media (max-width: 768px) {
+  .service-card {
+    max-width: 280px;
+    min-width: 250px;
+  }
+  
+  .glass-card {
+    max-width: 280px;
+    min-width: 250px;
+  }
+}
+.glass-card {
+  @apply relative h-full w-56 sm:w-64 md:w-80 lg:w-[400px] xl:w-[450px] 2xl:w-[500px] cursor-pointer overflow-hidden rounded-xl border border-white/10 bg-white/10 backdrop-blur-md shadow-lg transition-all duration-300;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(24,24,27,0.3);
+  backdrop-filter: blur(12px);
+}
+
+.service-card {
+  @apply relative h-full w-56 sm:w-64 md:w-80 lg:w-[400px] xl:w-[450px] 2xl:w-[500px] cursor-pointer overflow-hidden rounded-xl border border-white/10 bg-white/10 backdrop-blur-md shadow-lg transition-all duration-300;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(24,24,27,0.3);
+  backdrop-filter: blur(12px);
+}
+
+/* کادر فقط در صفحات بزرگ */
+@media (min-width: 1024px) {
+  .service-card {
+    border: 2px solid rgba(255,255,255,0.2);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  }
+  
+  .glass-card {
+    border: 2px solid rgba(255,255,255,0.2);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  }
+}
+
+.service-card:hover {
+  background: rgba(24,24,27,0.6);
+  border-color: rgba(255,255,255,0.3);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+  transform: translateY(-8px) scale(1.02);
+}
+
+/* Enhanced hover effects for better UX */
+.service-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.service-card:hover .service-card-icon {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.service-card:hover .service-card-title {
+  background: linear-gradient(45deg, #fbbf24, #f59e0b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+</style>
+<script>
+// Service Data Configuration - Optimized Structure
+const SERVICE_CONFIG = {
+  electrical: [
+    { 
+      name: "Electrical Wiring", 
+      icon: "fas fa-bolt", 
+      description: "Professional electrical wiring installation",
+      color: "from-blue-500 to-cyan-500",
+      features: ["Building Wiring", "Switch Installation", "Electrical Panel"]
+    },
+    { 
+      name: "Fan Installation", 
+      icon: "fas fa-fan", 
+      description: "Installation of ceiling and wall fans",
+      color: "from-green-500 to-emerald-500",
+      features: ["Ceiling Fans", "Wall Fans", "Remote Control"]
+    },
+    { 
+      name: "Electrical Repairs", 
+      icon: "fas fa-tools", 
+      description: "Repair and maintenance of electrical systems",
+      color: "from-orange-500 to-red-500",
+      features: ["Troubleshooting", "Quick Repairs", "Service Warranty"]
+    },
+    { 
+      name: "Lighting Installation", 
+      icon: "fas fa-lightbulb", 
+      description: "Installation of lights and lighting systems",
+      color: "from-yellow-500 to-amber-500",
+      features: ["Ceiling Lights", "Wall Lights", "Lighting Design"]
+    }
+  ],
+  installation: [
+    { 
+      name: "TV Installation", 
+      icon: "fas fa-tv", 
+      description: "Professional wall-mounted TV installation",
+      color: "from-purple-500 to-pink-500",
+      features: ["Wall Mounting", "Cable Concealment", "Angle Adjustment"]
+    },
+    { 
+      name: "Security Systems", 
+      icon: "fas fa-shield-alt", 
+      description: "Installation of CCTV cameras and security systems",
+      color: "from-indigo-500 to-blue-500",
+      features: ["CCTV Cameras", "Alarm Systems", "Video Recording"]
+    },
+    { 
+      name: "Cable Fishing", 
+      icon: "fas fa-fish", 
+      description: "Cable routing through walls without damage",
+      color: "from-teal-500 to-cyan-500",
+      features: ["No Damage", "Electrical Cables", "Network Cables"]
+    },
+    { 
+      name: "General Repairs", 
+      icon: "fas fa-wrench", 
+      description: "Various repairs and maintenance of equipment",
+      color: "from-gray-500 to-slate-500",
+      features: ["Appliance Repair", "Maintenance", "Periodic Service"]
+    }
+  ],
+  smart: [
+    { 
+      name: "Smart Doorbell", 
+      icon: "fas fa-door-open", 
+      description: "Installation of smart doorbells with night vision",
+      color: "from-violet-500 to-purple-500",
+      features: ["Night Vision", "Two-way Communication", "Mobile Connection"]
+    },
+    { 
+      name: "Smart Thermostat", 
+      icon: "fas fa-thermometer-half", 
+      description: "Installation of smart thermostats for temperature control",
+      color: "from-red-500 to-pink-500",
+      features: ["Temperature Control", "Programming", "Energy Saving"]
+    },
+    { 
+      name: "Smart Switches", 
+      icon: "fas fa-toggle-on", 
+      description: "Installation of smart switches and outlets",
+      color: "from-emerald-500 to-green-500",
+      features: ["Remote Control", "Scheduling", "Smart Home Integration"]
+    },
+    { 
+      name: "Audio Systems", 
+      icon: "fas fa-music", 
+      description: "Installation of audio and video systems",
+      color: "from-amber-500 to-orange-500",
+      features: ["Audio Systems", "Speakers", "Amplifiers"]
+    }
+  ]
+};
+
+// Optimized Service Card Generator
+function createServiceCard(service, index) {
+  const { name, icon, description, color, features } = service;
+  
+  // Responsive class mappings for better performance
+  const responsiveClasses = {
+    icon: 'w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 lg:w-20 lg:h-20',
+    iconText: 'text-sm sm:text-lg md:text-2xl lg:text-3xl',
+    title: 'text-xs sm:text-sm md:text-lg lg:text-xl',
+    description: 'text-xs md:text-sm lg:text-base',
+    feature: 'text-xs md:text-sm',
+    button: 'text-xs md:text-sm',
+    padding: 'p-2 sm:p-3 md:p-4 lg:p-6',
+    margin: 'mb-2 sm:mb-3 md:mb-4 lg:mb-6',
+    space: 'space-y-0.5 sm:space-y-1 lg:space-y-2'
+  };
+  
+  const featuresHTML = features.map(feature => `
+    <div class="flex items-center justify-center ${responsiveClasses.feature} text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
+      <i class="fas fa-check-circle text-green-400 mr-1 md:mr-2 text-xs"></i>
+      <span class="${responsiveClasses.feature} truncate">${feature}</span>
+    </div>
+  `).join('');
+  
+  return `
+    <div class="service-card glass-card group hover:scale-105 transition-all duration-300 cursor-pointer ${responsiveClasses.padding}" 
+         data-aos="fade-up" 
+         data-aos-delay="${index * 100}" 
+         data-aos-duration="800" 
+         data-aos-easing="ease-out-cubic">
+      <div class="relative overflow-hidden rounded-lg">
+        <!-- Background Gradient -->
+        <div class="absolute inset-0 bg-gradient-to-br ${color} opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div>
+        
+                 <!-- Icon -->
+         <div class="service-card-icon relative z-10 flex items-center justify-center ${responsiveClasses.icon} mt-2 mx-auto ${responsiveClasses.margin} bg-gradient-to-br ${color} rounded-full shadow-lg group-hover:shadow-xl transition-all duration-300">
+           <i class="${icon} ${responsiveClasses.iconText} text-white"></i>
+         </div>
+        
+                 <!-- Content -->
+         <div class="relative z-10 text-center">
+           <h3 class="service-card-title ${responsiveClasses.title} font-bold text-white mb-1 sm:mb-2 lg:mb-3 transition-all duration-300">${name}</h3>
+          <p class="${responsiveClasses.description} text-gray-300 mb-2 sm:mb-3 md:mb-4 lg:mb-6 leading-relaxed line-clamp-2">${description}</p>
+          
+          <!-- Features -->
+          <div class="${responsiveClasses.space}">
+            ${featuresHTML}
+          </div>
+          
+          <!-- Button - Hidden on Mobile -->
+          <button class="hidden md:block mt-2 sm:mt-3 md:mt-4 lg:mt-6 px-2 sm:px-3 md:px-4 lg:px-6 py-1 sm:py-1.5 md:py-2 lg:py-3 bg-gradient-to-r ${color} text-white rounded-full ${responsiveClasses.button} font-medium hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300">
+            Request
+          </button>
+        </div>
+        
+        <!-- Shine Effect -->
+        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+      </div>
+    </div>
+  `;
+}
+
+// Optimized Marquee Filler with Responsive Card Count
+function fillMarquee(marqueeId, services) {
+  const marquee = document.getElementById(marqueeId);
+  if (!marquee) return;
+  
+  // Create cards HTML
+  const cardsHTML = services.map((service, index) => createServiceCard(service, index)).join('');
+  
+  // Determine number of cards to show based on screen size
+  const isMobile = window.innerWidth <= 768;
+  const cardsToShow = isMobile ? 3 : 4; // 3 cards on mobile, 4 on desktop
+  
+  // Create enough duplicates to ensure smooth infinite loop
+  const duplicates = 6; // 6 duplicates for smooth looping
+  
+  marquee.innerHTML = cardsHTML.repeat(duplicates);
+  
+  // Set CSS custom property for animation
+  marquee.style.setProperty('--cards-to-show', cardsToShow);
+}
+
+// Initialize all marquees with optimized data
+function initializeMarquees() {
+  fillMarquee('marquee1', SERVICE_CONFIG.electrical);
+  fillMarquee('marquee2', SERVICE_CONFIG.installation);
+  fillMarquee('marquee3', SERVICE_CONFIG.smart);
+}
+
+// Optimized Initialization
+document.addEventListener('DOMContentLoaded', function() {
+  // Initialize marquees first
+  initializeMarquees();
+  
+  // Reinitialize marquees on window resize for responsive behavior
+window.addEventListener('resize', function() {
+  // Debounce resize events
+  clearTimeout(window.resizeTimeout);
+  window.resizeTimeout = setTimeout(function() {
+    initializeMarquees();
+    
+    // Update CSS custom properties for all marquees
+    const marquees = document.querySelectorAll('[id^="marquee"]');
+    marquees.forEach(marquee => {
+      const isMobile = window.innerWidth <= 768;
+      const cardsToShow = isMobile ? 3 : 4;
+      marquee.style.setProperty('--cards-to-show', cardsToShow);
+    });
+  }, 250);
+});
+  
+  // Initialize AOS with optimized settings
+  if (typeof AOS !== 'undefined') {
+    AOS.init({
+      duration: 800,
+      easing: 'ease-out-cubic',
+      once: true,
+      offset: 100,
+      delay: 0,
+      disable: 'mobile' // Disable on mobile for better performance
+    });
+  }
+  
+  // Performance optimization: Lazy load images if needed
+  if ('IntersectionObserver' in window) {
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          img.src = img.dataset.src;
+          img.classList.remove('lazy');
+          observer.unobserve(img);
+        }
+      });
+    });
+    
+    document.querySelectorAll('img[data-src]').forEach(img => {
+      imageObserver.observe(img);
+    });
+  }
+});
+  </script>
+  <!-- About Section -->
+ 
+
+  <!-- Features Section -->
+ 
+
+    <!-- Services Section -->
+    
+
+    <canvas id="three-d-background" class="fixed top-0 left-0 w-full h-full z-10"></canvas>
+    <section class="py-20 px-4 md:px-12 night-purple relative overflow-hidden">
+      <!-- Enhanced Background Elements - Hidden on Desktop -->
+      <div class="absolute inset-0 bg-gradient-to-br from-purple-900/40 via-indigo-900/30 to-blue-900/40 lg:hidden"></div>
+      <div class="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-yellow-400 to-orange-500 opacity-10 rounded-full filter blur-xl animate-pulse lg:hidden"></div>
+      <div class="absolute bottom-20 right-10 w-40 h-40 bg-gradient-to-br from-purple-600 to-pink-600 opacity-10 rounded-full filter blur-xl animate-pulse lg:hidden"></div>
+      <div class="absolute top-1/2 left-1/4 w-24 h-24 bg-gradient-to-br from-cyan-400 to-blue-500 opacity-8 rounded-full filter blur-lg animate-bounce lg:hidden"></div>
+      
+      <div class="container mx-auto relative z-10">
+        <div class="text-center mb-20" data-aos="fade-down">
+          <div class="inline-flex items-center justify-center w-20 h-20 md:w-24 md:h-24 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full mb-8 shadow-2xl">
+            <i class="fas fa-hammer text-white text-3xl md:text-4xl"></i>
+          </div>
+          <h2 class="text-4xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-yellow-400 via-orange-400 to-red-500 bg-clip-text text-transparent mb-6" id="typingTitle"></h2>
+          <p class="text-lg md:text-xl lg:text-2xl max-w-4xl mx-auto text-purple-200 leading-relaxed" id="typingSubtitle"></p>
+          <div class="w-40 h-1 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 mx-auto mt-8 rounded-full shadow-lg"></div>
+        </div>
+        
+        <script>
+          document.addEventListener('DOMContentLoaded', function() {
+            // Typing animation configuration
+            const titleText = "Professional Carpentry Services";
+            const subtitleText = "With years of experience in carpentry, we are ready to offer top-quality services using the finest materials.";
+            const typingSpeed = 50; // milliseconds per character
+            const deleteSpeed = 30; // milliseconds per character when deleting
+            const pauseBetween = 1000; // milliseconds pause between animations
+            
+            const titleElement = document.getElementById('typingTitle');
+            const subtitleElement = document.getElementById('typingSubtitle');
+            
+            // Typing animation function
+            async function typeWriter(element, text, speed) {
+              return new Promise((resolve) => {
+                let i = 0;
+                const typingInterval = setInterval(() => {
+                  if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                  } else {
+                    clearInterval(typingInterval);
+                    setTimeout(resolve, pauseBetween);
+                  }
+                }, speed);
+              });
+            }
+            
+            // Start the animation sequence
+            async function startTypingAnimation() {
+              // Type the title
+              await typeWriter(titleElement, titleText, typingSpeed);
+              
+              // Type the subtitle
+              await typeWriter(subtitleElement, subtitleText, typingSpeed);
+              
+              // Optional: Add blinking cursor effect
+              titleElement.classList.add('cursor-blink');
+              subtitleElement.classList.add('cursor-blink');
+            }
+            
+            // Start the animation
+            startTypingAnimation();
+            
+            // Optional: Add blinking cursor style
+            const style = document.createElement('style');
+            style.textContent = `
+              .cursor-blink::after {
+                content: '|';
+                animation: blink 1s step-end infinite;
+                color: currentColor;
+              }
+              @keyframes blink {
+                from, to { opacity: 1; }
+                50% { opacity: 0; }
+              }
+            `;
+            document.head.appendChild(style);
+          });
+        </script>
+        
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 lg:gap-12 justify-items-center">
+              <!-- Service 1 -->
+              <div class="service-card dark-purple-bg p-4 sm:p-6 md:p-8 rounded-xl md:rounded-2xl border border-purple-500/20 backdrop-blur-md shadow-xl md:shadow-2xl hover:shadow-purple-500/25 transition-all duration-500 group" data-aos="fade-up" data-aos-delay="100">
+                  <div class="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-xl md:rounded-2xl flex items-center justify-center mb-3 sm:mb-4 md:mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                      <i class="fas fa-home text-white text-lg sm:text-xl md:text-2xl"></i>
+                  </div>
+                  <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4 bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">Deck & Porch Remodeling</h3>
+                  <p class="text-purple-200 leading-relaxed text-sm sm:text-base md:text-lg">
+                      Design and construction of wooden decks and porches using durable materials in both modern and classic styles tailored to your preferences.
+                  </p>
+                  <div class="mt-4 sm:mt-5 md:mt-6 pt-3 sm:pt-4 border-t border-purple-500/20">
+                      <button class="bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-semibold px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-lg md:rounded-xl hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 text-sm sm:text-base">
+                          Learn More
+                      </button>
+                  </div>
+              </div>
+              
+              <!-- Service 2 -->
+              <div class="service-card dark-purple-bg p-4 sm:p-6 md:p-8 rounded-xl md:rounded-2xl border border-purple-500/20 backdrop-blur-md shadow-xl md:shadow-2xl hover:shadow-purple-500/25 transition-all duration-500 group" data-aos="fade-up" data-aos-delay="200">
+                <div class="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-xl md:rounded-2xl flex items-center justify-center mb-3 sm:mb-4 md:mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                    <i class="fas fa-stairs text-white text-lg sm:text-xl md:text-2xl"></i>
+                </div>
+                <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4 bg-gradient-to-r from-blue-400 to-cyan-500 bg-clip-text text-transparent">Stair Railing Installation & Repair</h3>
+                <p class="text-purple-200 leading-relaxed text-sm sm:text-base md:text-lg">
+                    Installation and repair of wooden stair railings with various designs and safety standards for both indoor and outdoor stairs.
+                </p>
+                <div class="mt-4 sm:mt-5 md:mt-6 pt-3 sm:pt-4 border-t border-purple-500/20">
+                    <button class="bg-gradient-to-r from-blue-400 to-cyan-500 text-white font-semibold px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-lg md:rounded-xl hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 text-sm sm:text-base">
+                        Learn More
+                    </button>
+                </div>
+            </div>
+              
+              <!-- Service 3 -->
+              <div class="service-card dark-purple-bg p-4 sm:p-6 md:p-8 rounded-xl md:rounded-2xl border border-purple-500/20 backdrop-blur-md shadow-xl md:shadow-2xl hover:shadow-purple-500/25 transition-all duration-500 group" data-aos="fade-up" data-aos-delay="300">
+                  <div class="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 bg-gradient-to-br from-green-400 to-emerald-500 rounded-xl md:rounded-2xl flex items-center justify-center mb-3 sm:mb-4 md:mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                      <i class="fas fa-tools text-white text-lg sm:text-xl md:text-2xl"></i>
+                  </div>
+                  <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4 bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent">General Carpentry</h3>
+                  <p class="text-purple-200 leading-relaxed text-sm sm:text-base md:text-lg">
+                      All types of carpentry services including building cabinets, closets, doors, and windows with excellent quality and long-lasting durability.
+                  </p>
+                  <div class="mt-4 sm:mt-5 md:mt-6 pt-3 sm:pt-4 border-t border-purple-500/20">
+                      <button class="bg-gradient-to-r from-green-400 to-emerald-500 text-white font-semibold px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-lg md:rounded-xl hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 text-sm sm:text-base">
+                          Learn More
+                      </button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <!-- AOS CSS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  
+  <!-- AOS JS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+      AOS.init({
+          duration: 800,
+          easing: 'ease-in-out',
+          once: true
+      });
+  </script>
+  
+    
+  <section id="our-services-vertical" style="padding:0;margin:0;position:relative;height:100vh;overflow:hidden;" class="mt-12">
+    <!-- Enhanced Gradient Vertical Line -->
+    <div class="absolute inset-0 bg-gradient-to-br from-purple-900/40 via-indigo-900/30 to-blue-900/40 lg:hidden"></div>
+    <div class="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-yellow-400 to-orange-500 opacity-10 rounded-full filter blur-xl animate-pulse lg:hidden"></div>
+    <div class="absolute bottom-20 right-10 w-40 h-40 bg-gradient-to-br from-purple-600 to-pink-600 opacity-10 rounded-full filter blur-xl animate-pulse lg:hidden"></div>
+    <div class="absolute top-1/2 left-1/4 w-24 h-24 bg-gradient-to-br from-cyan-400 to-blue-500 opacity-8 rounded-full filter blur-lg animate-bounce lg:hidden"></div>
+    
+    <div class="vertical-line"></div>
+  
+          <!-- Service Cards -->
+      <div class="services-scroll-vertical flex flex-col gap-y-1">
+        <!-- Card 1 Left -->
+        <div class="service-card left-card group ml-2" data-aos="fade-right">
+          <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-xl md:rounded-2xl flex items-center justify-center mb-3 sm:mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
+            <i class="fas fa-tv text-white text-lg sm:text-xl"></i>
+          </div>
+          <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">Wall-Mounted TV Installation</h3>
+          <p class="text-white leading-relaxed mb-3 sm:mb-4 text-sm sm:text-base">Professional TV wall-mounting with safety and aesthetic standards, suitable for all brands and sizes.</p>
+          <button class="modern-btn bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-semibold px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-lg md:rounded-xl hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 text-sm sm:text-base" data-modal="tv-install">Learn More</button>
+        </div>
+  
+        <!-- Card 2 Right -->
+        <div class="service-card right-card group mr-2" data-aos="fade-left">
+          <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-xl md:rounded-2xl flex items-center justify-center mb-3 sm:mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
+            <i class="fas fa-shield-alt text-white text-lg sm:text-xl"></i>
+          </div>
+          <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 bg-gradient-to-r from-blue-400 to-cyan-500 bg-clip-text text-transparent">Security System & Alarm Installation</h3>
+          <p class="text-white leading-relaxed mb-3 sm:mb-4 text-sm sm:text-base">Design and installation of advanced security systems including CCTV, intruder alarms, and smart surveillance setups.</p>
+          <button class="modern-btn bg-gradient-to-r from-blue-400 to-cyan-500 text-white font-semibold px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-lg md:rounded-xl hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 text-sm sm:text-base" data-modal="security-install">Learn More</button>
+        </div>
+  
+        <!-- Card 3 Left -->
+        <div class="service-card left-card group ml-2" data-aos="fade-right">
+          <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br from-green-400 to-emerald-500 rounded-xl md:rounded-2xl flex items-center justify-center mb-3 sm:mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
+            <i class="fas fa-door-open text-white text-lg sm:text-xl"></i>
+          </div>
+          <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent">Smart Doorbell Installation</h3>
+          <p class="text-white leading-relaxed mb-3 sm:mb-4 text-sm sm:text-base">Installation of smart doorbells with night vision, two-way communication, and mobile connectivity.</p>
+          <button class="modern-btn bg-gradient-to-r from-green-400 to-emerald-500 text-white font-semibold px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-lg md:rounded-xl hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 text-sm sm:text-base" data-modal="doorbell-install">Learn More</button>
+        </div>
+  
+        <!-- Card 4 Right -->
+        <div class="service-card right-card group mr-2" data-aos="fade-left">
+          <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br from-purple-400 to-pink-500 rounded-xl md:rounded-2xl flex items-center justify-center mb-3 sm:mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
+            <i class="fas fa-fish text-white text-lg sm:text-xl"></i>
+          </div>
+          <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">Wire Fishing (Through-Wall Wiring)</h3>
+          <p class="text-white leading-relaxed mb-3 sm:mb-4 text-sm sm:text-base">In-wall wire and cable routing services without damage, ideal for audio and visual systems.</p>
+          <button class="modern-btn bg-gradient-to-r from-purple-400 to-pink-500 text-white font-semibold px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-lg md:rounded-xl hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 text-sm sm:text-base" data-modal="wire-fishing">Learn More</button>
+        </div>
+  
+        <!-- Card 5 Left -->
+        <div class="service-card left-card group ml-2" data-aos="fade-right">
+          <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br from-red-400 to-pink-500 rounded-xl md:rounded-2xl flex items-center justify-center mb-3 sm:mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
+            <i class="fas fa-thermometer-half text-white text-lg sm:text-xl"></i>
+          </div>
+          <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 bg-gradient-to-r from-red-400 to-pink-500 bg-clip-text text-transparent">Smart Thermostat Installation</h3>
+          <p class="text-white leading-relaxed mb-3 sm:mb-4 text-sm sm:text-base">Installation and configuration of smart thermostats with scheduling and remote control features for HVAC systems.</p>
+          <button class="modern-btn bg-gradient-to-r from-red-400 to-pink-500 text-white font-semibold px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-lg md:rounded-xl hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 text-sm sm:text-base" data-modal="thermostat-install">Learn More</button>
+        </div>
+  
+        <!-- Card 6 Right -->
+        <div class="service-card right-card group mr-2" data-aos="fade-left">
+          <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br from-indigo-400 to-purple-500 rounded-xl md:rounded-2xl flex items-center justify-center mb-3 sm:mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
+            <i class="fas fa-toggle-on text-white text-lg sm:text-xl"></i>
+          </div>
+          <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 bg-gradient-to-r from-indigo-400 to-purple-500 bg-clip-text text-transparent">Smart Switch Installation</h3>
+          <p class="text-white leading-relaxed mb-3 sm:mb-4 text-sm sm:text-base">Installation of smart switches and outlets with remote control, scheduling, and integration with smart home systems.</p>
+          <button class="modern-btn bg-gradient-to-r from-indigo-400 to-purple-500 text-white font-semibold px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-lg md:rounded-xl hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 text-sm sm:text-base" data-modal="smart-switch">Learn More</button>
+        </div>
+      </div>
+  
+    <!-- Modal for More Info -->
+    <div class="modal-overlay" id="modal">
+      <div class="modal-content">
+        <button class="close-modal">&times;</button>
+        <div class="modal-body">
+          <img src="" alt="" class="modal-image">
+          <div class="modal-text">
+            <h3 class="modal-title"></h3>
+            <p class="modal-description text-white"></p>
+            <div class="modal-features"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+      
+      <style>
+        /* استایل خط عمودی */
+        .vertical-line {
+          position: absolute;
+          left: 50%;
+          top: 0;
+          width: 4px;
+          height: 100%;
+          background: linear-gradient(180deg, #7b2ff2 0%, #f357a8 100%);
+          opacity: 0.5;
+          z-index: 0;
+          transform: translateX(-50%);
+        }
+        
+        /* استایل اسکرول عمودی (مخفی کردن اسکرول بار) */
+        .services-scroll-vertical {
+          height: 100vh;
+          overflow-y: scroll;
+          scroll-snap-type: y mandatory;
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          padding: 0 20px;
+          position: relative;
+          z-index: 1;
+          -ms-overflow-style: none;  /* IE and Edge */
+          scrollbar-width: none;  /* Firefox */
+        }
+        
+        @media (min-width: 640px) {
+          .services-scroll-vertical {
+            gap: 25px;
+            padding: 0 40px;
+          }
+        }
+        
+        @media (min-width: 768px) {
+          .services-scroll-vertical {
+            gap: 30px;
+            padding: 0 60px;
+          }
+        }
+        
+        @media (min-width: 1024px) {
+          .services-scroll-vertical {
+            gap: 30px;
+            padding: 0 80px;
+          }
+        }
+        
+        /* مخفی کردن اسکرول بار در کروم و سافاری */
+        .services-scroll-vertical::-webkit-scrollbar {
+          display: none;
+        }
+        
+        /* استایل کارت خدمات */
+        .service-card {
+          min-height: 240px;
+          max-height: 280px;
+          border: 2px solid rgba(123, 47, 242, 0.3);
+          border-radius: 16px;
+          padding: 20px 16px;
+          color: #7b2ff2;
+          scroll-snap-align: center;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          box-shadow: 0 6px 24px 0 rgba(123, 47, 242, 0.2);
+          background: rgba(255, 255, 255, 0.95);
+          backdrop-filter: blur(12px);
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          position: relative;
+          overflow: hidden;
+        }
+        
+        @media (min-width: 640px) {
+          .service-card {
+            min-height: 260px;
+            max-height: 300px;
+            border-radius: 20px;
+            padding: 24px 20px;
+            box-shadow: 0 8px 28px 0 rgba(123, 47, 242, 0.2);
+          }
+        }
+        
+        @media (min-width: 768px) {
+          .service-card {
+            min-height: 280px;
+            max-height: 320px;
+            border-radius: 24px;
+            padding: 28px 24px;
+            box-shadow: 0 8px 32px 0 rgba(123, 47, 242, 0.2);
+          }
+        }
+        
+        @media (min-width: 1024px) {
+          .service-card {
+            min-height: 280px;
+            max-height: 320px;
+            border-radius: 24px;
+            padding: 32px 24px;
+            box-shadow: 0 8px 32px 0 rgba(123, 47, 242, 0.2);
+          }
+        }
+        
+        .service-card::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(135deg, rgba(123, 47, 242, 0.15) 0%, rgba(243, 87, 168, 0.15) 100%);
+          z-index: -1;
+          opacity: 0;
+          transition: opacity 0.4s ease;
+        }
+        
+        .service-card:hover::before {
+          opacity: 1;
+        }
+        
+        .service-card:hover {
+          transform: translateY(-8px) scale(1.02);
+          box-shadow: 0 16px 48px 0 rgba(123, 47, 242, 0.3);
+          border-color: rgba(123, 47, 242, 0.5);
+        }
+        
+        /* Enhanced hover effects for vertical service cards */
+        .service-card:hover {
+          transform: translateY(-8px) scale(1.02);
+          box-shadow: 0 16px 48px 0 rgba(123, 47, 242, 0.3);
+          border-color: rgba(123, 47, 242, 0.5);
+        }
+        
+        .service-card:hover::before {
+          opacity: 1;
+        }
+        
+        .service-card h3 {
+          font-size: 1rem;
+          font-weight: 700;
+          margin-bottom: 8px;
+          line-height: 1.3;
+        }
+        
+        .service-card p {
+          font-size: 0.85rem;
+          margin-bottom: 12px;
+          line-height: 1.4;
+        }
+        
+        @media (min-width: 640px) {
+          .service-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+          }
+          
+          .service-card p {
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+          }
+        }
+        
+        @media (min-width: 768px) {
+          .service-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+          }
+          
+          .service-card p {
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            line-height: 1.5;
+          }
+        }
+        
+        /* استایل دکمه */
+        .modern-btn {
+          border: none;
+          border-radius: 12px;
+          font-weight: 600;
+          font-size: 14px;
+          cursor: pointer;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          position: relative;
+          overflow: hidden;
+          margin-top: auto;
+        }
+        
+        .modern-btn::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+          transition: left 0.5s;
+        }
+        
+        .modern-btn:hover::before {
+          left: 100%;
+        }
+        
+        .modern-btn:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+        
+        /* کارت‌های چپ و راست */
+        .left-card {
+          align-self: flex-start;
+          margin-right: auto;
+          margin-left: 0;
+          width: 85%;
+        }
+        
+        .right-card {
+          align-self: flex-end;
+          margin-left: auto;
+          margin-right: 0;
+          width: 85%;
+        }
+        
+        @media (min-width: 640px) {
+          .left-card, .right-card {
+            width: 80%;
+          }
+        }
+        
+        @media (min-width: 768px) {
+          .left-card, .right-card {
+            width: 75%;
+          }
+        }
+        
+        @media (min-width: 1024px) {
+          .left-card, .right-card {
+            width: 70%;
+          }
+        }
+        
+        /* استایل مدال */
+        .modal-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: rgba(0, 0, 0, 0.7);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          z-index: 1000;
+          opacity: 0;
+          visibility: hidden;
+          transition: all 0.3s ease;
+        }
+        
+        .modal-overlay.active {
+          opacity: 1;
+          visibility: visible;
+        }
+        
+        .modal-content {
+          background: white;
+          border-radius: 16px;
+          width: 80%;
+          max-width: 800px;
+          max-height: 80vh;
+          overflow-y: auto;
+          padding: 30px;
+          position: relative;
+          transform: translateY(20px);
+          transition: transform 0.3s ease;
+        }
+        
+        .modal-overlay.active .modal-content {
+          transform: translateY(0);
+        }
+        
+        .close-modal {
+          position: absolute;
+          top: 15px;
+          right: 15px;
+          font-size: 1.5rem;
+          background: none;
+          border: none;
+          cursor: pointer;
+          color: #7b2ff2;
+        }
+        
+        .modal-body {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+        }
+        
+        .modal-image {
+          width: 100%;
+          max-height: 400px;
+          object-fit: cover;
+          border-radius: 12px;
+          margin-bottom: 20px;
+        }
+        
+        .modal-title {
+          color: #f7f7f7;
+          font-size: 1.5rem;
+          margin-bottom: 15px;
+        }
+        
+        .modal-description {
+          color: #333;
+          line-height: 1.6;
+          margin-bottom: 20px;
+        }
+        
+        .modal-features {
+          background: #f9f5ff;
+          padding: 15px;
+          border-radius: 10px;
+          border-right: 3px solid #7b2ff2;
+        }
+        
+        .modal-features ul {
+          padding-left: 20px;
+          margin: 0;
+        }
+        
+        .modal-features li {
+          margin-bottom: 8px;
+          color: #555;
+        }
+        
+        @media (max-width: 768px) {
+          .services-scroll-vertical {
+            padding: 0 20px;
+          }
+          
+          .modal-content {
+            width: 90%;
+            padding: 20px;
+          }
+          
+          .modal-body {
+            flex-direction: column;
+          }
+        }
+      </style>
+      
+      <!-- اسکریپت‌های مورد نیاز -->
+      <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.0/dist/lenis.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+      
+      <script>
+        // داده‌های مدال‌ها با جزئیات کامل
+        const modalData = {
+          "tv-install": {
+            title: "نصب تلویزیون دیواری",
+            description: "خدمات نصب حرفه‌ای تلویزیون بر روی دیوار با رعایت تمامی استانداردهای فنی و زیبایی شناسی",
+            features: [
+              "تعیین بهترین مکان نصب از نظر ارگونومی و دید",
+              "استفاده از براکت‌های استاندارد و با کیفیت",
+              "عبور کابل‌ها به صورت مخفی و زیبا",
+              "تنظیم دقیق زاویه دید برای بهترین تجربه تماشا",
+              "تست تمامی قابلیت‌های تلویزیون پس از نصب",
+              "گارانتی نصب و خدمات پس از نصب"
+            ],
+            image: "https://example.com/tv-install.jpg"
+          },
+          "security-install": {
+            title: "نصب سیستم امنیتی و دزدگیر",
+            description: "طراحی و پیاده‌سازی سیستم‌های امنیتی پیشرفته برای منازل و کسب‌وکارها",
+            features: [
+              "نصب دوربین‌های مداربسته با کیفیت بالا",
+              "راه‌اندازی سیستم دزدگیر اماکن با سنسورهای حرکتی",
+              "تنظیم سیستم نظارتی هوشمند",
+              "اتصال به تلفن همراه برای کنترل از راه دور",
+              "آموزش کامل استفاده به مشتری",
+              "پشتیبانی فنی 24 ساعته"
+            ],
+            image: "https://example.com/security-install.jpg"
+          },
+          "doorbell-install": {
+            title: "نصب زنگ درب هوشمند",
+            description: "نصب و راه‌اندازی زنگ‌های درب هوشمند با جدیدترین فناوری‌ها",
+            features: [
+              "قابلیت دید در شب با کیفیت بالا",
+              "ارتباط دوطرفه صوتی با کیفیت",
+              "اتصال به شبکه وای‌فای و تلفن همراه",
+              "تنظیم حساسیت سنسور حرکتی",
+              "ذخیره‌سازی تصاویر در حافظه ابری",
+              "آموزش استفاده به ساکنین"
+            ],
+            image: "https://example.com/doorbell-install.jpg"
+          },
+          "wire-fishing": {
+            title: "عبور سیم از دیوار",
+            description: "انجام خدمات عبور سیم و کابل به صورت حرفه‌ای و بدون تخریب",
+            features: [
+              "عبور سیم‌های صوتی و تصویری از داخل دیوار",
+              "ایجاد کانال‌های مخفی بدون تخریب دیوار",
+              "استفاده از ابزارهای حرفه‌ای برای عبور سیم",
+              "رعایت اصول ایمنی و استانداردها",
+              "نظافت کامل پس از انجام کار",
+              "گارانتی خدمات ارائه شده"
+            ],
+            image: "https://example.com/wire-fishing.jpg"
+          },
+          "thermostat-install": {
+            title: "نصب ترموستات هوشمند",
+            description: "نصب و راه‌اندازی ترموستات‌های هوشمند برای سیستم‌های گرمایش و سرمایش",
+            features: [
+              "قابلیت برنامه‌ریزی دمایی هفتگی",
+              "اتصال به سیستم گرمایش و سرمایش",
+              "تنظیم کنترل از راه دور از طریق موبایل",
+              "آموزش برنامه‌ریزی دمایی",
+              "یکپارچه‌سازی با سایر سیستم‌های هوشمند",
+              "پشتیبانی فنی و خدمات پس از نصب"
+            ],
+            image: "https://example.com/thermostat-install.jpg"
+          },
+          "smart-switch": {
+            title: "نصب کلید هوشمند",
+            description: "نصب و راه‌اندازی کلید و پریزهای هوشمند با قابلیت‌های پیشرفته",
+            features: [
+              "جایگزینی کلیدهای معمولی با کلیدهای هوشمند",
+              "تنظیم کنترل از راه دور از طریق اپلیکیشن",
+              "برنامه‌ریزی زمان‌بندی روشن/خاموش",
+              "یکپارچه‌سازی با سیستم خانه هوشمند",
+              "آموزش استفاده به ساکنین",
+              "گارانتی محصول و خدمات نصب"
+            ],
+            image: "https://example.com/smart-switch.jpg"
+          }
+        };
+      
+        // Initialize Lenis for smooth scrolling
+        const lenis = new Lenis({
+          lerp: 0.1,
+          smooth: true,
+          direction: 'vertical'
+        });
+      
+        function raf(time) {
+          lenis.raf(time);
+          requestAnimationFrame(raf);
+        }
+      
+        requestAnimationFrame(raf);
+        
+        // Initialize GSAP animations
+        gsap.registerPlugin(ScrollTrigger);
+        
+        // Set up scroll animations for cards
+        document.querySelectorAll('.service-card').forEach((card, index) => {
+          const isLeftCard = card.classList.contains('left-card');
+          const startPosition = isLeftCard ? -100 : 100;
+          
+          gsap.from(card, {
+            x: startPosition,
+                opacity: 0,
+            duration: 0.8,
+            scrollTrigger: {
+              trigger: card,
+              start: "top 80%",
+              end: "top 50%",
+              scrub: 1,
+              toggleActions: "play none none none"
+            },
+            ease: "power2.out"
+          });
+          
+          // Hover animation
+          card.addEventListener('mouseenter', () => {
+            gsap.to(card, {
+              y: -5,
+              duration: 0.3,
+              ease: "power2.out"
+            });
+          });
+          
+          card.addEventListener('mouseleave', () => {
+            gsap.to(card, {
+              y: 0,
+              duration: 0.3,
+              ease: "power2.out"
+            });
+          });
+        });
+        
+        // Enable mouse wheel scrolling (even though scrollbar is hidden)
+        document.querySelector('.services-scroll-vertical').addEventListener('wheel', (e) => {
+          e.preventDefault();
+          const container = document.querySelector('.services-scroll-vertical');
+          container.scrollTop += e.deltaY;
+        });
+        
+        // Modal functionality
+            const modal = document.getElementById('modal');
+        const modalTitle = document.querySelector('.modal-title');
+        const modalDescription = document.querySelector('.modal-description');
+        const modalImage = document.querySelector('.modal-image');
+        const modalFeatures = document.querySelector('.modal-features');
+        
+        // Open modal when buttons are clicked
+        document.querySelectorAll('.modern-btn').forEach(button => {
+          button.addEventListener('click', () => {
+            const modalId = button.getAttribute('data-modal');
+            const data = modalData[modalId];
+            
+            modalTitle.textContent = data.title;
+            modalDescription.textContent = data.description;
+            modalImage.src = data.image;
+            modalImage.alt = data.title;
+            
+            // Create features list
+            modalFeatures.innerHTML = '<ul>' + 
+              data.features.map(feature => `<li>${feature}</li>`).join('') + 
+              '</ul>';
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+          });
+        });
+        
+        // Close modal
+        document.querySelector('.close-modal').addEventListener('click', () => {
+          modal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+        });
+        
+        // Close modal when clicking outside
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+          }
+        });
+    </script>
+
+    <!-- Modal -->
+    <div id="modal" class="fixed inset-0 z-50 flex items-center justify-center hidden modal-overlay">
+        <div class="bg-white rounded-lg shadow-2xl max-w-md w-full mx-4 modal">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl font-bold text-[#4b2a6b]" id="modal-title"></h3>
+                    <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                    </button>
+                </div>
+                <div id="modal-content" class="text-gray-700">
+                    <!-- Content will be loaded here -->
+            </div>
+                <div class="mt-6 flex justify-end">
+                    <button onclick="closeModal()" class="px-4 py-2 bg-[#4b2a6b] text-white rounded-lg hover:bg-[#5a3780] transition-colors">بستن</button>
+                </div>
+            </div>
+                </div>
+            </div>
+
+   
+
+     
+
+<style>
+    .service-card {
+        transition: all 0.3s ease;
+        border: 1px solid #3a2a6d;
+        background-color: #1a0a42;
+    }
+    
+    .service-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(123, 97, 255, 0.2);
+    }
+    
+    .gradient-text {
+        background: linear-gradient(90deg, #9d4edd, #7b61ff);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+</style>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  
+  <style>
+    .swiper {
+      width: 100%;
+      padding-top: 50px;
+      padding-bottom: 50px;
+    }
+
+    .swiper-slide {
+      background-position: center;
+      background-size: cover;
+      width: 300px;
+      height: 300px;
+    }
+
+    .swiper-slide img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    
+  </style>
+</head>
+
+<body>
+  <!-- Swiper -->
+ 
+
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <!-- Initialize Swiper -->
+  <script>
+    var swiper = new Swiper(".mySwiper", {
+      effect: "coverflow",
+      grabCursor: true,
+      centeredSlides: true,
+      slidesPerView: "auto",
+      coverflowEffect: {
+        rotate: 50,
+        stretch: 0,
+        depth: 100,
+        modifier: 1,
+        slideShadows: true,
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+    });
+  </script>
+        <!-- اشیاء شناور در پس‌زمینه -->
+        <div id="floating-elements" class="hidden lg:block">
+            <div class="absolute -left-20 top-1/4 w-16 h-16 rounded-full bg-primary-accent opacity-30 filter blur-xl animate-pulse"></div>
+            <div class="absolute right-10 top-1/3 w-24 h-24 rounded-full bg-secondary opacity-20 filter blur-xl animate-pulse" style="animation-delay: 0.5s"></div>
+            <div class="absolute left-40 bottom-1/4 w-12 h-12 rounded-full bg-tertiary opacity-25 filter blur-lg animate-pulse" style="animation-delay: 1s"></div>
+        </div>
+    </section>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+   <script>
+    // Initialize AOS
+    AOS.init({
+        duration: 800,
+        once: true
+    });
+
+    // GSAP animations
+    gsap.from(".flip-service-card", {
+        scrollTrigger: {
+            trigger: "#our-services",
+            start: "top 80%",
+            toggleActions: "play none none none"
+        },
+        y: 50,
+        opacity: 0,
+        stagger: 0.2,
+        duration: 1,
+        ease: "power3.out"
+    });
+
+    // Three.js Background
+    const threeDCanvas = document.getElementById('three-d-background');
+    const threeDRenderer = new THREE.WebGLRenderer({
+        canvas: threeDCanvas,
+        alpha: true
+    });
+    threeDRenderer.setSize(window.innerWidth, window.innerHeight);
+
+    const threeDScene = new THREE.Scene();
+    const threeDCamera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    threeDCamera.position.z = 5;
+
+    // Create colorful glowing particle texture
+   
+    // Generate random color
+    function randomColor() {
+        const h = Math.floor(Math.random() * 360);
+        return `hsl(${h}, 90%, 60%)`;
+    }
+
+    // Create particles
+    const particlesCount = 1200;
+    const particlesGeometry = new THREE.BufferGeometry();
+    const positions = new Float32Array(particlesCount * 3);
+    const sizes = new Float32Array(particlesCount);
+    const colors = [];
+    const textures = [];
+    for (let i = 0; i < particlesCount; i++) {
+        positions[i * 3] = (Math.random() - 0.5) * 16;
+        positions[i * 3 + 1] = (Math.random() - 0.5) * 10;
+        positions[i * 3 + 2] = (Math.random() - 0.5) * 10;
+        sizes[i] = 0.08 + Math.random() * 0.18;
+        const color = randomColor();
+        colors.push(color);
+        textures.push(createColorfulParticleTexture(color));
+    }
+    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+    // Custom material for each particle
+    const particleMaterials = textures.map((texture, i) => new THREE.PointsMaterial({
+        size: sizes[i],
+        map: texture,
+        transparent: true,
+        opacity: 0.7 + Math.random() * 0.3,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false
+    }));
+
+    // Create Points for each particle (for color/size variety)
+    const group = new THREE.Group();
+    for (let i = 0; i < particlesCount; i++) {
+        const geometry = new THREE.BufferGeometry();
+        geometry.setAttribute('position', new THREE.BufferAttribute(positions.slice(i * 3, i * 3 + 3), 3));
+        const points = new THREE.Points(geometry, particleMaterials[i]);
+        group.add(points);
+    }
+    threeDScene.add(group);
+
+    // Add 3D shapes (unchanged)
+    const createWireframeShape = (geometry, color, x, y) => {
+        const material = new THREE.MeshBasicMaterial({
+            color: color,
+            wireframe: true
+        });
+        const shape = new THREE.Mesh(geometry, material);
+        shape.position.x = x;
+        shape.position.y = y;
+        return shape;
+    };
+
+    const cubeShape = createWireframeShape(
+        new THREE.BoxGeometry(0.5, 0.5, 0.5),
+        0x800080,
+        2,
+        -1
+    );
+    threeDScene.add(cubeShape);
+
+    const sphereShape = createWireframeShape(
+        new THREE.SphereGeometry(0.3, 16, 16),
+        0x00FFFF,
+        -2,
+        1
+    );
+    threeDScene.add(sphereShape);
+
+    // Animation loop
+    function animateThreeDScene() {
+        requestAnimationFrame(animateThreeDScene);
+        group.rotation.x += 0.0007;
+        group.rotation.y += 0.0012;
+        cubeShape.rotation.x += 0.01;
+        cubeShape.rotation.y += 0.01;
+        sphereShape.rotation.y += 0.01;
+        threeDRenderer.render(threeDScene, threeDCamera);
+    }
+    animateThreeDScene();
+
+    // Handle window resize
+    window.addEventListener('resize', () => {
+        threeDCamera.aspect = window.innerWidth / window.innerHeight;
+        threeDCamera.updateProjectionMatrix();
+        threeDRenderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    // Add hover effects to cards
+    document.querySelectorAll('.flip-service-card').forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            gsap.to(card, {
+                scale: 1.05,
+                duration: 0.3,
+                ease: "power2.out"
+            });
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            gsap.to(card, {
+                scale: 1,
+                duration: 0.3,
+                ease: "power2.out"
+            });
+        });
+    });
+</script>
+
+
+    <!-- About Section -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  
+    <section id="about-us" class="py-24  text-white">
+      <div class="max-w-7xl mx-auto px-6 lg:px-12">
+        <!-- Header -->
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-10 mb-16">
+          <!-- Visual Element -->
+          <div class="relative w-28 h-28 sm:w-56 sm:h-56 flex items-center justify-center">
+            <div class="absolute inset-0 bg-blue-500 opacity-20 blur-2xl rounded-full"></div>
+            <div class="relative w-28 h-28 sm:w-40 sm:h-40 rounded-full bg-gradient-to-tr from-blue-400 to-purple-500 shadow-xl flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 sm:h-12 sm:w-12 text-yellow-400 floating" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+          </div>
+    
+          <!-- Title -->
+          <div class="text-center sm:text-left max-w-xl">
+            <h2 id="about-title" class="text-4xl sm:text-5xl font-bold text-yellow-400 mb-4">Who We Are</h2>
+            <p class="text-gray-300 text-lg">We are a team of innovators, engineers, and creators delivering cutting-edge electrical and automation solutions for modern buildings and industries.</p>
+          </div>
+        </div>
+    
+        <!-- Content -->
+        <div class="flex flex-col-reverse lg:flex-row items-center gap-16">
+          <!-- Text -->
+          <div class="w-full lg:w-1/2">
+            <div class="space-y-6">
+              <p class="about-paragraph text-gray-300 text-base leading-relaxed">
+                With over 15 years of experience, our company has led the way in integrating smart technologies into electrical infrastructure, ensuring safety, sustainability, and performance.
+              </p>
+              <p class="about-paragraph text-gray-300 text-base leading-relaxed">
+                From industrial plants to intelligent buildings, we provide solutions tailored to each environment, using global standards and certified professionals.
+              </p>
+    
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6">
+                <div class="about-feature-card border border-gray-700 p-5 rounded-xl bg-[#1e293b]">
+                  <div class="text-yellow-400 text-3xl mb-3">
+                    <i class="fas fa-user-cog"></i>
+                  </div>
+                  <h4 class="text-xl font-semibold mb-2">Certified Engineers</h4>
+                  <p class="text-gray-400 text-sm">A qualified and experienced technical team at your service.</p>
+                </div>
+    
+                <div class="about-feature-card border border-gray-700 p-5 rounded-xl bg-[#1e293b]">
+                  <div class="text-yellow-400 text-3xl mb-3">
+                    <i class="fas fa-microchip"></i>
+                  </div>
+                  <h4 class="text-xl font-semibold mb-2">Smart Solutions</h4>
+                  <p class="text-gray-400 text-sm">Integration of IoT, automation, and power systems under one roof.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+    
+          <!-- Visual/3D Section -->
+          <div class="w-full lg:w-1/2">
+            <div class="relative rounded-xl overflow-hidden shadow-xl">
+              <img id="img2" src="./public/2.jpg" alt="Our Work" class="w-full h-80 object-cover transform hover:scale-105 transition duration-500" />
+              <canvas id="about-3d-canvas" class="absolute inset-0 w-full h-full pointer-events-none"></canvas>
+            </div>
+            <div class="text-center mt-6">
+            
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script>
+      gsap.registerPlugin(ScrollTrigger);
+    
+      gsap.from("#about-title", {
+        scrollTrigger: {
+          trigger: "#about-title",
+          start: "top 80%"
+        },
+        y: 50,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out"
+      });
+    
+      gsap.from(".about-paragraph", {
+        scrollTrigger: {
+          trigger: ".about-paragraph",
+          start: "top 85%",
+        },
+        y: 40,
+        opacity: 0,
+        stagger: 0.2,
+        duration: 1,
+        ease: "power2.out"
+      });
+    
+    gsap.from(".about-feature-card", {
+  scrollTrigger: {
+    trigger: ".about-feature-card",
+    start: "top 90%",
+  },
+  y: 30,
+  opacity: 0.2,
+  stagger: 0.2,
+  duration: 1,
+  ease: "power2.out",
+  onComplete: () => {
+    // کارت‌ها رو روی مقدار شفاف‌تر نگه می‌داریم
+    document.querySelectorAll(".about-feature-card").forEach(card => {
+      card.style.opacity = "0.9";  // کمتر از 0.7 برای شفاف‌تر شدن
+    });
+  }
+});
+
+    
+      gsap.from("#about-rotate-btn", {
+        scrollTrigger: {
+          trigger: "#about-rotate-btn",
+          start: "top 95%",
+        },
+        scale: 0.5,
+        opacity: 0,
+        duration: 0.7,
+        ease: "back.out(1.8)"
+      });
+    </script>
+        
+ <!-- Services Section -->
+
+ 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .scroll-container {
+            background: linear-gradient(to bottom, #1e0752, #0f0528);
+            border-radius: 8px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+            position: relative;
+            overflow: hidden;
+            border-top: 2px solid #4c1d95;
+            border-bottom: 2px solid #4c1d95;
+        }
+        
+        .scroll-container::before,
+        .scroll-container::after {
+            content: "";
+            position: absolute;
+            height: 100%;
+            width: 20px;
+            top: 0;
+            background: linear-gradient(to right, #4c1d95, transparent);
+        }
+        
+        .scroll-container::before {
+            left: 0;
+        }
+        
+        .scroll-container::after {
+            right: 0;
+            background: linear-gradient(to left, #4c1d95, transparent);
+        }
+        
+        .hover-grow {
+            transition: transform 0.3s ease;
+        }
+        
+        .hover-grow:hover {
+            transform: scale(1.02);
+        }
+    </style>
+
+    <!-- Services Section -->
+    <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+      <!-- Drywall Service -->
+      <div class="scroll-container hover-grow" data-aos="fade-down" data-aos-delay="100">
+          <div class="p-4 relative z-10">
+              <div class="flex items-center mb-3">
+                  <div class="bg-yellow-500 p-2 rounded-full mr-3">
+                      <i class="fas fa-wall text-lg"></i>
+                  </div>
+                  <h2 class="text-xl font-bold word-animate hover-trigger">Professional Drywall Services</h2>
+              </div>
+              <ul class="space-y-2 text-purple-100 text-sm">
+                  <li class="flex items-center word-animate hover-trigger">
+                      <i class="fas fa-check-circle text-yellow-400 mr-2 text-xs"></i>
+                      Drywall installation
+                  </li>
+                  <li class="flex items-center word-animate hover-trigger">
+                      <i class="fas fa-check-circle text-yellow-400 mr-2 text-xs"></i>
+                      Drywall repair
+                  </li>
+                  <li class="flex items-center word-animate hover-trigger">
+                      <i class="fas fa-check-circle text-yellow-400 mr-2 text-xs"></i>
+                      False ceiling design
+                  </li>
+                  <li class="flex items-center word-animate hover-trigger">
+                      <i class="fas fa-check-circle text-yellow-400 mr-2 text-xs"></i>
+                      Sound and thermal insulation
+                  </li>
+              </ul>
+          </div>
+          <div class="bg-purple-900 bg-opacity-70 p-3 text-center">
+              <button class="bg-purple-700 hover:bg-purple-800 text-white px-4 py-1 rounded-full transition duration-300 text-sm">
+                  Request Service
+              </button>
+          </div>
+      </div>
+  
+      <!-- Electrical Service -->
+      <div class="scroll-container hover-grow" data-aos="fade-left" data-aos-delay="200">
+          <div class="p-4 relative z-10">
+              <div class="flex items-center mb-3">
+                  <div class="bg-yellow-500 p-2 rounded-full mr-3">
+                      <i class="fas fa-bolt text-lg"></i>
+                  </div>
+                  <h2 class="text-xl font-bold word-animate hover-trigger">Electrical Services</h2>
+              </div>
+              <ul class="space-y-2 text-purple-100 text-sm">
+                  <li class="flex items-center word-animate hover-trigger">
+                      <i class="fas fa-check-circle text-yellow-400 mr-2 text-xs"></i>
+                      Wiring installation
+                  </li>
+                  <li class="flex items-center word-animate hover-trigger">
+                      <i class="fas fa-check-circle text-yellow-400 mr-2 text-xs"></i>
+                      Fan installation
+                  </li>
+                  <li class="flex items-center word-animate hover-trigger">
+                      <i class="fas fa-check-circle text-yellow-400 mr-2 text-xs"></i>
+                      Switch and outlet installation
+                  </li>
+                  <li class="flex items-center word-animate hover-trigger">
+                      <i class="fas fa-check-circle text-yellow-400 mr-2 text-xs"></i>
+                      Building electrical system repair
+                  </li>
+              </ul>
+          </div>
+          <div class="bg-purple-900 bg-opacity-70 p-3 text-center">
+              <button class="bg-purple-700 hover:bg-purple-800 text-white px-4 py-1 rounded-full transition duration-300 text-sm">
+                  Request Service
+              </button>
+          </div>
+      </div>
+  
+      <!-- General Repair Service -->
+      <div class="scroll-container hover-grow" data-aos="fade-up" data-aos-delay="300">
+          <div class="p-4 relative z-10">
+              <div class="flex items-center mb-3">
+                  <div class="bg-yellow-500 p-2 rounded-full mr-3">
+                      <i class="fas fa-tools text-lg"></i>
+                  </div>
+                  <h2 class="text-xl font-bold word-animate hover-trigger">General Repair Services</h2>
+              </div>
+              <ul class="space-y-2 text-purple-100 text-sm">
+                  <li class="flex items-center word-animate hover-trigger">
+                      <i class="fas fa-check-circle text-yellow-400 mr-2 text-xs"></i>
+                      Smart lock installation
+                  </li>
+                  <li class="flex items-center word-animate hover-trigger">
+                      <i class="fas fa-check-circle text-yellow-400 mr-2 text-xs"></i>
+                      Garage door repair
+                  </li>
+                  <li class="flex items-center word-animate hover-trigger">
+                      <i class="fas fa-check-circle text-yellow-400 mr-2 text-xs"></i>
+                      Furniture assembly
+                  </li>
+                  <li class="flex items-center word-animate hover-trigger">
+                      <i class="fas fa-check-circle text-yellow-400 mr-2 text-xs"></i>
+                      Sports equipment assembly
+                  </li>
+              </ul>
+          </div>
+          <div class="bg-purple-900 bg-opacity-70 p-3 text-center">
+              <button class="bg-purple-700 hover:bg-purple-800 text-white px-4 py-1 rounded-full transition duration-300 text-sm">
+                  Request Service
+              </button>
+          </div>
+      </div>
+  
+      <!-- Plumbing Service -->
+      <div class="scroll-container hover-grow" data-aos="fade-right" data-aos-delay="400">
+          <div class="p-4 relative z-10">
+              <div class="flex items-center mb-3">
+                  <div class="bg-yellow-500 p-2 rounded-full mr-3">
+                      <i class="fas fa-faucet text-lg"></i>
+                  </div>
+                  <h2 class="text-xl font-bold word-animate hover-trigger">Plumbing Services</h2>
+              </div>
+              <ul class="space-y-2 text-purple-100 text-sm">
+                  <li class="flex items-center word-animate hover-trigger">
+                      <i class="fas fa-check-circle text-yellow-400 mr-2 text-xs"></i>
+                      Garbage disposal installation
+                  </li>
+                  <li class="flex items-center word-animate hover-trigger">
+                      <i class="fas fa-check-circle text-yellow-400 mr-2 text-xs"></i>
+                      Water pipe repair
+                  </li>
+                  <li class="flex items-center word-animate hover-trigger">
+                      <i class="fas fa-check-circle text-yellow-400 mr-2 text-xs"></i>
+                      Faucet installation
+                  </li>
+                  <li class="flex items-center word-animate hover-trigger">
+                      <i class="fas fa-check-circle text-yellow-400 mr-2 text-xs"></i>
+                      Bathroom remodeling
+                  </li>
+              </ul>
+          </div>
+          <div class="bg-purple-900 bg-opacity-70 p-3 text-center">
+              <button class="bg-purple-700 hover:bg-purple-800 text-white px-4 py-1 rounded-full transition duration-300 text-sm">
+                  Request Service
+              </button>
+          </div>
+      </div>
+  
+      <!-- Home Electronics -->
+      <div class="scroll-container hover-grow" data-aos="fade-down" data-aos-delay="500">
+          <div class="p-4 relative z-10">
+              <div class="flex items-center mb-3">
+                  <div class="bg-yellow-500 p-2 rounded-full mr-3">
+                      <i class="fas fa-plug text-lg"></i>
+                  </div>
+                  <h2 class="text-xl font-bold word-animate hover-trigger">Home Electronics</h2>
+              </div>
+              <ul class="space-y-2 text-purple-100 text-sm">
+                  <li class="flex items-center word-animate hover-trigger">
+                      <i class="fas fa-check-circle text-yellow-400 mr-2 text-xs"></i>
+                      Wall-mounted TV installation
+                  </li>
+                  <li class="flex items-center word-animate hover-trigger">
+                      <i class="fas fa-check-circle text-yellow-400 mr-2 text-xs"></i>
+                      Security system installation
+                  </li>
+                  <li class="flex items-center word-animate hover-trigger">
+                      <i class="fas fa-check-circle text-yellow-400 mr-2 text-xs"></i>
+                      Smart thermostat installation
+                  </li>
+                  <li class="flex items-center word-animate hover-trigger">
+                      <i class="fas fa-check-circle text-yellow-400 mr-2 text-xs"></i>
+                      Wall wiring
+                  </li>
+              </ul>
+          </div>
+          <div class="bg-purple-900 bg-opacity-70 p-3 text-center">
+              <button class="bg-purple-700 hover:bg-purple-800 text-white px-4 py-1 rounded-full transition duration-300 text-sm">
+                  Request Service
+              </button>
+          </div>
+      </div>
+  
+      <!-- Welding & Fencing -->
+      <div class="scroll-container hover-grow" data-aos="fade-left" data-aos-delay="600">
+          <div class="p-4 relative z-10">
+              <div class="flex items-center mb-3">
+                  <div class="bg-yellow-500 p-2 rounded-full mr-3">
+                      <i class="fas fa-fire text-lg"></i>
+                  </div>
+                  <h2 class="text-xl font-bold word-animate hover-trigger">Welding & Fencing</h2>
+              </div>
+              <ul class="space-y-2 text-purple-100 text-sm">
+                  <li class="flex items-center word-animate hover-trigger">
+                      <i class="fas fa-check-circle text-yellow-400 mr-2 text-xs"></i>
+                      Copper and steel welding
+                  </li>
+                  <li class="flex items-center word-animate hover-trigger">
+                      <i class="fas fa-check-circle text-yellow-400 mr-2 text-xs"></i>
+                      Fence installation/repair
+                  </li>
+                  <li class="flex items-center word-animate hover-trigger">
+                      <i class="fas fa-check-circle text-yellow-400 mr-2 text-xs"></i>
+                      Ventilation system welding
+                  </li>
+                  <li class="flex items-center word-animate hover-trigger">
+                      <i class="fas fa-check-circle text-yellow-400 mr-2 text-xs"></i>
+                      Gazebo and canopy installation
+                  </li>
+              </ul>
+          </div>
+          <div class="bg-purple-900 bg-opacity-70 p-3 text-center">
+              <button class="bg-purple-700 hover:bg-purple-800 text-white px-4 py-1 rounded-full transition duration-300 text-sm">
+                  Request Service
+              </button>
+          </div>
+      </div>
+  
+      <!-- Flooring & Painting -->
+      <div class="scroll-container hover-grow md:col-span-2 lg:col-span-1" data-aos="fade-up" data-aos-delay="700">
+          <div class="p-4 relative z-10">
+              <div class="flex items-center mb-3">
+                  <div class="bg-yellow-500 p-2 rounded-full mr-3">
+                      <i class="fas fa-paint-roller text-lg"></i>
+                  </div>
+                  <h2 class="text-xl font-bold word-animate hover-trigger">Flooring & Painting</h2>
+              </div>
+              <ul class="space-y-2 text-purple-100 text-sm">
+                  <li class="flex items-center word-animate hover-trigger">
+                      <i class="fas fa-check-circle text-yellow-400 mr-2 text-xs"></i>
+                      Laminate and tile flooring
+                  </li>
+                  <li class="flex items-center word-animate hover-trigger">
+                      <i class="fas fa-check-circle text-yellow-400 mr-2 text-xs"></i>
+                      Building painting
+                  </li>
+                  <li class="flex items-center word-animate hover-trigger">
+                      <i class="fas fa-check-circle text-yellow-400 mr-2 text-xs"></i>
+                      Wallpaper installation
+                  </li>
+                  <li class="flex items-center word-animate hover-trigger">
+                      <i class="fas fa-check-circle text-yellow-400 mr-2 text-xs"></i>
+                      Vinyl flooring
+                  </li>
+              </ul>
+          </div>
+          <div class="bg-purple-900 bg-opacity-70 p-3 text-center">
+              <button class="bg-purple-700 hover:bg-purple-800 text-white px-4 py-1 rounded-full transition duration-300 text-sm">
+                  Request Service
+              </button>
+          </div>
+      </div>
+  
+      <!-- Cabinet & Furniture -->
+      <div class="scroll-container hover-grow" data-aos="fade-right" data-aos-delay="800">
+          <div class="p-4 relative z-10">
+              <div class="flex items-center mb-3">
+                  <div class="bg-yellow-500 p-2 rounded-full mr-3">
+                      <i class="fas fa-couch text-lg"></i>
+                  </div>
+                  <h2 class="text-xl font-bold word-animate hover-trigger">Cabinets & Furniture</h2>
+              </div>
+              <ul class="space-y-2 text-purple-100 text-sm">
+                  <li class="flex items-center word-animate hover-trigger">
+                      <i class="fas fa-check-circle text-yellow-400 mr-2 text-xs"></i>
+                      Cabinet installation/repair
+                  </li>
+                  <li class="flex items-center word-animate hover-trigger">
+                      <i class="fas fa-check-circle text-yellow-400 mr-2 text-xs"></i>
+                      Furniture assembly
+                  </li>
+                  <li class="flex items-center word-animate hover-trigger">
+                      <i class="fas fa-check-circle text-yellow-400 mr-2 text-xs"></i>
+                      Wardrobe door installation
+                  </li>
+                  <li class="flex items-center word-animate hover-trigger">
+                      <i class="fas fa-check-circle text-yellow-400 mr-2 text-xs"></i>
+                      Artwork and wall decor
+                  </li>
+              </ul>
+          </div>
+          <div class="bg-purple-900 bg-opacity-70 p-3 text-center">
+              <button class="bg-purple-700 hover:bg-purple-800 text-white px-4 py-1 rounded-full transition duration-300 text-sm">
+                  Request Service
+              </button>
+          </div>
+      </div>
+  
+      <!-- Fitness Equipment -->
+      <div class="scroll-container hover-grow" data-aos="fade-down" data-aos-delay="900">
+          <div class="p-4 relative z-10">
+              <div class="flex items-center mb-3">
+                  <div class="bg-yellow-500 p-2 rounded-full mr-3">
+                      <i class="fas fa-dumbbell text-lg"></i>
+                  </div>
+                  <h2 class="text-xl font-bold word-animate hover-trigger">Fitness Equipment</h2>
+              </div>
+              <ul class="space-y-2 text-purple-100 text-sm">
+                  <li class="flex items-center word-animate hover-trigger">
+                      <i class="fas fa-check-circle text-yellow-400 mr-2 text-xs"></i>
+                      Elliptical assembly
+                  </li>
+                  <li class="flex items-center word-animate hover-trigger">
+                      <i class="fas fa-check-circle text-yellow-400 mr-2 text-xs"></i>
+                      Treadmill installation
+                  </li>
+                  <li class="flex items-center word-animate hover-trigger">
+                      <i class="fas fa-check-circle text-yellow-400 mr-2 text-xs"></i>
+                      Stationary bike
+                  </li>
+                  <li class="flex items-center word-animate hover-trigger">
+                      <i class="fas fa-check-circle text-yellow-400 mr-2 text-xs"></i>
+                      Power Tower assembly
+                  </li>
+              </ul>
+          </div>
+          <div class="bg-purple-900 bg-opacity-70 p-3 text-center">
+              <button class="bg-purple-700 hover:bg-purple-800 text-white px-4 py-1 rounded-full transition duration-300 text-sm">
+                  Request Service
+              </button>
+          </div>
+      </div>
+  
+      <!-- All Services -->
+      <div class="scroll-container hover-grow md:col-span-2 lg:col-span-3" data-aos="fade-up" data-aos-delay="1000">
+          <div class="p-4 relative z-10">
+              <div class="flex items-center justify-center mb-3">
+                  <div class="bg-yellow-500 p-3 rounded-full mr-3">
+                      <i class="fas fa-toolbox text-xl"></i>
+                  </div>
+                  <h2 class="text-2xl font-bold text-center word-animate hover-trigger">All Our Professional Services</h2>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-purple-100 text-sm">
+                  <div>
+                      <h3 class="font-semibold mb-2 text-purple-200 word-animate hover-trigger">Building & Installation</h3>
+                      <ul class="space-y-2">
+                          <li class="flex items-center word-animate hover-trigger">
+                              <i class="fas fa-check text-yellow-400 mr-2 text-xs"></i>
+                              Door and window installation
+                          </li>
+                          <li class="flex items-center word-animate hover-trigger">
+                              <i class="fas fa-check text-yellow-400 mr-2 text-xs"></i>
+                              Sprinkler system repair
+                          </li>
+                          <li class="flex items-center word-animate hover-trigger">
+                              <i class="fas fa-check text-yellow-400 mr-2 text-xs"></i>
+                              Smart lock installation
+                          </li>
+                      </ul>
+                  </div>
+                  <div>
+                      <h3 class="font-semibold mb-2 text-purple-200 word-animate hover-trigger">Specialized Repairs</h3>
+                      <ul class="space-y-2">
+                          <li class="flex items-center word-animate hover-trigger">
+                              <i class="fas fa-check text-yellow-400 mr-2 text-xs"></i>
+                              Garage door opener replacement
+                          </li>
+                          <li class="flex items-center word-animate hover-trigger">
+                              <i class="fas fa-check text-yellow-400 mr-2 text-xs"></i>
+                              Bathroom fan repair
+                          </li>
+                          <li class="flex items-center word-animate hover-trigger">
+                              <i class="fas fa-check text-yellow-400 mr-2 text-xs"></i>
+                              Specialized welding
+                          </li>
+                      </ul>
+                  </div>
+                  <div>
+                      <h3 class="font-semibold mb-2 text-purple-200 word-animate hover-trigger">Other Services</h3>
+                      <ul class="space-y-2">
+                          <li class="flex items-center word-animate hover-trigger">
+                              <i class="fas fa-check text-yellow-400 mr-2 text-xs"></i>
+                              Smart doorbell installation
+                          </li>
+                          <li class="flex items-center word-animate hover-trigger">
+                              <i class="fas fa-check text-yellow-400 mr-2 text-xs"></i>
+                              Bathtub demolition
+                          </li>
+                          <li class="flex items-center word-animate hover-trigger">
+                              <i class="fas fa-check text-yellow-400 mr-2 text-xs"></i>
+                              Smart switch installation
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+          <div class="bg-purple-900 bg-opacity-70 p-3 text-center">
+              <button class="bg-purple-700 hover:bg-purple-800 text-white px-6 py-2 rounded-full transition duration-300">
+                  View All Services
+              </button>
+          </div>
+      </div>
+  </section>
+  
+  <!-- Add GSAP and AOS libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+      // Initialize AOS
+      AOS.init({
+          duration: 800,
+          easing: 'ease-out-quad',
+          once: true,
+          offset: 50
+      });
+  
+      // Function to animate words
+      function animateWords(element) {
+  const text = element.textContent;
+  element.innerHTML = text.split(' ').map(word => 
+      `<span style="display:inline-block;opacity:0;transform: translateY(10px);">${word}</span>`
+  ).join(' ');
+
+  gsap.to(element.querySelectorAll('span'), {
+      opacity: 1,
+      y: 0,
+      stagger: 0.05,
+      duration: 0.5,
+      ease: "power2.out"
+  });
+}
+
+// با ScrollTrigger اجرا می‌کنیم
+gsap.utils.toArray('.word-animate').forEach(element => {
+  ScrollTrigger.create({
+    trigger: element,
+    start: "top 80%",
+    once: true,  // فقط یک بار اجرا میشه
+    onEnter: () => {
+      animateWords(element);
+    }
+  });
+});
+
+  </script>
+
+
+<section id="portfolio" class="py-20 px-4 max-w-7xl mx-auto">
+  <div class="text-center mb-12" data-aos="fade-up">
+      <h2 class="text-3xl md:text-4xl font-bold text-yellow-400 mb-4">Our Portfolio</h2>
+      <p class="text-gray-300 max-w-2xl mx-auto">
+          Some of the projects implemented by our expert team
+      </p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" data-aos="fade-up" data-aos-delay="200">
+      <!-- Project 1 -->
+      <div class="portfolio-item rounded-xl overflow-hidden shadow-lg hover:shadow-yellow-400/20 transition-all cursor-pointer" onclick="openModal('modal1')">
+          <img
+              id="img1"
+              src="./public/3.jpg"
+              alt="Smart lighting project"
+              class="w-full h-64 md:h-80 object-cover transform transition duration-500 hover:scale-105"
+          />
+          <div class="bg-[#2a1b4d] p-4">
+              <h3 class="text-xl font-bold mb-2">Smart Villa Lighting</h3>
+              <p class="text-gray-300">
+                  Design and implementation of smart lighting system for a villa in northern Iran
+              </p>
+          </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="portfolio-item rounded-xl overflow-hidden shadow-lg hover:shadow-yellow-400/20 transition-all cursor-pointer" onclick="openModal('modal2')">
+          <img
+              id="img2"
+              src="./public/4.jpg"
+              alt="Industrial electrical project"
+              class="w-full h-64 md:h-80 object-cover transform transition duration-500 hover:scale-105"
+          />
+          <div class="bg-[#2a1b4d] p-4">
+              <h3 class="text-xl font-bold mb-2">Factory Industrial Electrical</h3>
+              <p class="text-gray-300">
+                  Installation and commissioning of industrial electrical system for a manufacturing plant
+              </p>
+          </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="portfolio-item rounded-xl overflow-hidden shadow-lg hover:shadow-yellow-400/20 transition-all cursor-pointer" onclick="openModal('modal3')">
+          <img
+              id="img3"
+              src="./public/4.jpg"
+              alt="Building electrical project"
+              class="w-full h-64 md:h-80 object-cover transform transition duration-500 hover:scale-105"
+          />
+          <div class="bg-[#2a1b4d] p-4">
+              <h3 class="text-xl font-bold mb-2">Residential Building Electrical</h3>
+              <p class="text-gray-300">
+                  Complete electrical system implementation for a 10-story residential building
+              </p>
+          </div>
+      </div>
+  </div>
+ <section class="mt-12">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" data-aos="fade-up" data-aos-delay="200">
+      <!-- Project 1 -->
+      <div class="portfolio-item rounded-xl overflow-hidden shadow-lg hover:shadow-yellow-400/20 transition-all cursor-pointer" onclick="openModal('modal1')">
+          <img
+              id="img1"
+              src="./public/1.jpg"
+              alt="Smart lighting project"
+              class="w-full h-64 md:h-80 object-cover transform transition duration-500 hover:scale-105"
+          />
+          <div class="bg-[#2a1b4d] p-4">
+              <h3 class="text-xl font-bold mb-2">Smart Villa Lighting</h3>
+              <p class="text-gray-300">
+                  Design and implementation of smart lighting system for a villa in northern Iran
+              </p>
+          </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="portfolio-item rounded-xl overflow-hidden shadow-lg hover:shadow-yellow-400/20 transition-all cursor-pointer" onclick="openModal('modal2')">
+          <img
+              id="img2"
+              src="./public/2.jpg"
+              alt="Industrial electrical project"
+              class="w-full h-64 md:h-80 object-cover transform transition duration-500 hover:scale-105"
+          />
+          <div class="bg-[#2a1b4d] p-4">
+              <h3 class="text-xl font-bold mb-2">Factory Industrial Electrical</h3>
+              <p class="text-gray-300">
+                  Installation and commissioning of industrial electrical system for a manufacturing plant
+              </p>
+          </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="portfolio-item rounded-xl overflow-hidden shadow-lg hover:shadow-yellow-400/20 transition-all cursor-pointer" onclick="openModal('modal3')">
+          <img
+              id="img3"
+              src="./public/3.jpg"
+              alt="Building electrical project"
+              class="w-full h-64 md:h-80 object-cover transform transition duration-500 hover:scale-105"
+          />
+          <div class="bg-[#2a1b4d] p-4">
+              <h3 class="text-xl font-bold mb-2">Residential Building Electrical</h3>
+              <p class="text-gray-300">
+                  Complete electrical system implementation for a 10-story residential building
+              </p>
+          </div>
+      </div>
+  </div>
+ </section>
+</section>
+
+<!-- Modal 1 -->
+<div id="modal1" class="modal">
+  <span class="close" onclick="closeModal('modal1')">&times;</span>
+  <img class="modal-content" id="img-modal1" src="https://images.unsplash.com/photo-1605152276897-4f618f831968?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80">
+  <div class="caption text-center p-4 text-white">Smart Villa Lighting</div>
+</div>
+
+<!-- Modal 2 -->
+<div id="modal2" class="modal">
+  <span class="close" onclick="closeModal('modal2')">&times;</span>
+  <img class="modal-content" id="img-modal2" src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80">
+  <div class="caption text-center p-4 text-white">Factory Industrial Electrical</div>
+</div>
+
+<!-- Modal 3 -->
+<div id="modal3" class="modal">
+  <span class="close" onclick="closeModal('modal3')">&times;</span>
+  <img class="modal-content" id="img-modal3" src="https://images.unsplash.com/photo-1600566752225-ffba4c5c4575?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80">
+  <div class="caption text-center p-4 text-white">Residential Building Electrical</div>
+</div>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  // Initialize AOS
+  AOS.init({
+      duration: 800,
+      once: true
+  });
+
+  // Open the Modal
+  function openModal(modalId) {
+      document.getElementById(modalId).style.display = "block";
+  }
+
+  // Close the Modal
+  function closeModal(modalId) {
+      document.getElementById(modalId).style.display = "none";
+  }
+
+  // Close when clicking outside the modal
+  window.onclick = function(event) {
+      if (event.target.className === 'modal') {
+          document.querySelectorAll('.modal').forEach(modal => {
+              modal.style.display = "none";
+          });
+      }
+  }
+   
+  // Parallax effect on portfolio items
+  document.querySelectorAll('.portfolio-item').forEach(item => {
+      item.addEventListener('mousemove', (e) => {
+          const xPos = e.clientX / window.innerWidth - 0.5;
+          const yPos = e.clientY / window.innerHeight - 0.5;
+          item.style.transform = `perspective(1000px) rotateY(${-xPos*10}deg) rotateX(${yPos*5}deg) scale(1.02)`;
+      });
+      
+      item.addEventListener('mouseleave', () => {
+          item.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1)';
+      });
+  });
+</script>
+
+    <!-- Contact Section -->
+    
+    <!-- Three.js Background Canvas -->
+    <div id="threejs-background"></div>
+    
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-20 relative z-10">
+      <!-- Page Header -->
+      <header class="mb-16 text-center" data-aos="fade-down">
+          <h1 class="text-4xl md:text-5xl font-bold text-yellow-400 mb-4">Contact Us</h1>
+          <p class="text-xl text-gray-300 max-w-2xl mx-auto">Fill out the form below for free consultation and more information, and we'll contact you as soon as possible.</p>
+      </header>
+      
+      <!-- Contact Section -->
+      <section id="contact" class="py-12 px-4 max-w-7xl mx-auto">
+          <div class="bg-[#2a1b4d] rounded-xl p-8 md:p-12 shadow-2xl border border-[#3a2b5d]" data-aos="fade-up" data-aos-delay="100">
+              <div class="flex flex-col lg:flex-row gap-12">
+                  <div class="lg:w-1/2" data-aos="fade-right" data-aos-delay="200">
+                      <h2 class="text-3xl font-bold text-yellow-400 mb-6">Contact Us</h2>
+                      <p class="text-gray-300 mb-6 leading-relaxed">
+                          Our support team is ready to answer your questions and receive your feedback about our services and products. Please contact us if you need more information.
+                      </p>
+                      
+                      <!-- Contact Info Cards -->
+                      <div class="space-y-6">
+                          <div class="bg-[#3a2b5d] p-4 rounded-lg shadow-md hover:shadow-yellow-400/20 transition-all hover:translate-y-[-4px]" data-aos="fade-right" data-aos-delay="300">
+                              <div class="flex items-center gap-4">
+                                  <div class="w-12 h-12 bg-yellow-400/10 rounded-full flex items-center justify-center border border-yellow-400/30">
+                                      <i class="fas fa-phone text-yellow-400 text-xl"></i>
+                                  </div>
+                                  <div>
+                                      <h4 class="font-bold text-yellow-400">Phone</h4>
+                                      <p class="text-gray-300">021-12345678</p>
+                                  </div>
+                              </div>
+                          </div>
+                          
+                          <div class="bg-[#3a2b5d] p-4 rounded-lg shadow-md hover:shadow-yellow-400/20 transition-all hover:translate-y-[-4px]" data-aos="fade-right" data-aos-delay="400">
+                              <div class="flex items-center gap-4">
+                                  <div class="w-12 h-12 bg-yellow-400/10 rounded-full flex items-center justify-center border border-yellow-400/30">
+                                      <i class="fas fa-envelope text-yellow-400 text-xl"></i>
+                                  </div>
+                                  <div>
+                                      <h4 class="font-bold text-yellow-400">Email</h4>
+                                      <p class="text-gray-300">info@example.com</p>
+                                  </div>
+                              </div>
+                          </div>
+                          
+                          <div class="bg-[#3a2b5d] p-4 rounded-lg shadow-md hover:shadow-yellow-400/20 transition-all hover:translate-y-[-4px]" data-aos="fade-right" data-aos-delay="500">
+                              <div class="flex items-center gap-4">
+                                  <div class="w-12 h-12 bg-yellow-400/10 rounded-full flex items-center justify-center border border-yellow-400/30">
+                                      <i class="fas fa-map-marker-alt text-yellow-400 text-xl"></i>
+                                  </div>
+                                  <div>
+                                      <h4 class="font-bold text-yellow-400">Address</h4>
+                                      <p class="text-gray-300">Tehran, Azadi Street, No. 123</p>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      
+                      <!-- Social Media Links -->
+                      <div class="mt-8" data-aos="fade-right" data-aos-delay="600">
+                          <h4 class="text-yellow-400 mb-4">Social Networks</h4>
+                          <div class="flex gap-4">
+                              <a href="#" class="w-10 h-10 bg-[#3a2b5d] rounded-full flex items-center justify-center text-yellow-400 hover:bg-yellow-400 hover:text-[#3a2b5d] transition-all">
+                                  <i class="fab fa-instagram"></i>
+                              </a>
+                              <a href="#" class="w-10 h-10 bg-[#3a2b5d] rounded-full flex items-center justify-center text-yellow-400 hover:bg-yellow-400 hover:text-[#3a2b5d] transition-all">
+                                  <i class="fab fa-telegram"></i>
+                              </a>
+                              <a href="#" class="w-10 h-10 bg-[#3a2b5d] rounded-full flex items-center justify-center text-yellow-400 hover:bg-yellow-400 hover:text-[#3a2b5d] transition-all">
+                                  <i class="fab fa-linkedin"></i>
+                              </a>
+                              <a href="#" class="w-10 h-10 bg-[#3a2b5d] rounded-full flex items-center justify-center text-yellow-400 hover:bg-yellow-400 hover:text-[#3a2b5d] transition-all">
+                                  <i class="fab fa-twitter"></i>
+                              </a>
+                          </div>
+                      </div>
+                  </div>
+                  
+                  <!-- Contact Form -->
+                
+                 
+                      <!-- Three.js Background -->
+                      <div id="threejs-background" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;"></div>
+                  
+                      <!-- Floating Particles -->
+                      <div id="floating-particles"></div>
+                  
+                      <section id="contact" class="py-20 px-4 max-w-7xl mx-auto relative">
+                          <div class="contact-card bg-[#2a1b4d] rounded-xl p-8 md:p-12 relative overflow-hidden floating" data-aos="fade-up" data-aos-duration="1000">
+                              <!-- Decorative 3D Elements -->
+                              <div class="absolute -top-20 -right-20 w-40 h-40 bg-yellow-400 opacity-10 rounded-full filter blur-xl"></div>
+                              <div class="absolute -bottom-20 -left-20 w-60 h-60 bg-purple-600 opacity-10 rounded-full filter blur-xl"></div>
+                              
+                              <div class="flex flex-col lg:flex-row gap-12 relative z-10">
+                                  <div class="lg:w-1/2" data-aos="fade-right" data-aos-delay="200">
+                                      <h2 class="text-3xl font-bold text-yellow-400 mb-6 transform hover:translateZ(10px) transition-all duration-300">Contact Us</h2>
+                                      <p class="text-gray-300 mb-6 transform hover:translateZ(5px) transition-all duration-300">
+                                          For free consultation or service requests, please enter your information.
+                                      </p>
+                  
+                                      <div class="space-y-4">
+                                          <div class="flex items-center gap-3 contact-icon p-3 rounded-lg bg-[#3a2b5d]">
+                                              <i class="fas fa-phone text-yellow-400 text-xl"></i>
+                                              <span class="text-gray-300">021-12345678</span>
+                                          </div>
+                                          <div class="flex items-center gap-3 contact-icon p-3 rounded-lg bg-[#3a2b5d]">
+                                              <i class="fas fa-envelope text-yellow-400 text-xl"></i>
+                                              <span class="text-gray-300">info@example.com</span>
+                                          </div>
+                                          <div class="flex items-center gap-3 contact-icon p-3 rounded-lg bg-[#3a2b5d]">
+                                              <i class="fas fa-map-marker-alt text-yellow-400 text-xl"></i>
+                                              <span class="text-gray-300">Tehran, Azadi Street, No. 123</span>
+                                          </div>
+                                      </div>
+                                      
+                                      <!-- 3D Icon Elements -->
+                                      <div class="mt-8 grid grid-cols-3 gap-4">
+                                          <div class="bg-[#3a2b5d] p-4 rounded-lg contact-icon" data-aos="zoom-in" data-aos-delay="300">
+                                              <i class="fas fa-headset text-yellow-400 text-2xl mx-auto block text-center"></i>
+                                              <p class="text-gray-300 text-sm mt-2 text-center">Support</p>
+                                          </div>
+                                          <div class="bg-[#3a2b5d] p-4 rounded-lg contact-icon" data-aos="zoom-in" data-aos-delay="400">
+                                              <i class="fas fa-comments text-yellow-400 text-2xl mx-auto block text-center"></i>
+                                              <p class="text-gray-300 text-sm mt-2 text-center">Consultation</p>
+                                          </div>
+                                          <div class="bg-[#3a2b5d] p-4 rounded-lg contact-icon" data-aos="zoom-in" data-aos-delay="500">
+                                              <i class="fas fa-clock text-yellow-400 text-2xl mx-auto block text-center"></i>
+                                              <p class="text-gray-300 text-sm mt-2 text-center">24/7</p>
+                                          </div>
+                                      </div>
+                                  </div>
+                  
+                                  <div class="lg:w-1/2" data-aos="fade-left" data-aos-delay="200">
+                                      <form class="space-y-4" id="contact-form">
+                                          <div data-aos="fade-up" data-aos-delay="300">
+                                              <label for="name" class="block text-gray-300 mb-2"
+                                                  >Full Name</label
+                                              >
+                                              <input
+                                                  type="text"
+                                                  id="name"
+                                                  class="input-field w-full bg-[#3a2b5d] border border-[#4a3b6d] rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                                                  required
+                                              />
+                                          </div>
+                                          <div data-aos="fade-up" data-aos-delay="400">
+                                              <label for="email" class="block text-gray-300 mb-2"
+                                                  >Email</label
+                                              >
+                                              <input
+                                                  type="email"
+                                                  id="email"
+                                                  class="input-field w-full bg-[#3a2b5d] border border-[#4a3b6d] rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                                                  required
+                                              />
+                                          </div>
+                                          <div data-aos="fade-up" data-aos-delay="500">
+                                              <label for="phone" class="block text-gray-300 mb-2"
+                                                  >Phone Number</label
+                                              >
+                                              <input
+                                                  type="tel"
+                                                  id="phone"
+                                                  class="input-field w-full bg-[#3a2b5d] border border-[#4a3b6d] rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                                                  required
+                                              />
+                                          </div>
+                                          <div data-aos="fade-up" data-aos-delay="600">
+                                              <label for="message" class="block text-gray-300 mb-2"
+                                                  >Your Message</label
+                                              >
+                                              <textarea
+                                                  id="message"
+                                                  rows="4"
+                                                  class="input-field w-full bg-[#3a2b5d] border border-[#4a3b6d] rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                                                  required
+                                              ></textarea>
+                                          </div>
+                                          <button
+                                              type="submit"
+                                              class="w-full bg-yellow-400 text-black font-bold py-3 rounded-lg hover:bg-yellow-300 transition-all submit-btn"
+                                              data-aos="fade-up"
+                                              data-aos-delay="700"
+                                              id="submit-btn"
+                                          >
+                                              <span class="relative z-10">Send Message</span>
+                                          </button>
+                                      </form>
+                                  </div>
+                              </div>
+                          </div>
+                      </section>
+                    
+                        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+                        <script>
+                            // Initialize AOS
+                            AOS.init({
+                                once: true,
+                                duration: 800,
+                                easing: 'ease-in-out-quad'
+                            });
+                            
+                            // Three.js Background
+                            if (typeof THREE !== 'undefined') {
+                                // Scene setup
+                                const scene = new THREE.Scene();
+                                const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+                                const renderer = new THREE.WebGLRenderer({ 
+                                    alpha: true, 
+                                    antialias: true,
+                                    canvas: document.getElementById('threejs-background')
+                                });
+                                renderer.setSize(window.innerWidth, window.innerHeight);
+                                renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+                                
+                                // Create particles
+                                const particlesGeometry = new THREE.BufferGeometry();
+                                const particleCount = 1500;
+                                
+                                const posArray = new Float32Array(particleCount * 3);
+                                const colorArray = new Float32Array(particleCount * 3);
+                                
+                                for(let i = 0; i < particleCount * 3; i++) {
+                                    posArray[i] = (Math.random() - 0.5) * 20;
+                                    
+                                    // Add some color variation
+                                    if (i % 3 === 0) {
+                                        colorArray[i] = Math.random() * 0.5 + 0.5; // R
+                                        colorArray[i+1] = Math.random() * 0.3; // G
+                                        colorArray[i+2] = Math.random() * 0.5 + 0.5; // B
+                                    }
+                                }
+                                
+                                particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+                                particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colorArray, 3));
+                                
+                                const particlesMaterial = new THREE.PointsMaterial({
+                                    size: 0.03,
+                                    vertexColors: true,
+                                    transparent: true,
+                                    opacity: 0.8,
+                                    blending: THREE.AdditiveBlending
+                                });
+                                
+                                const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+                                scene.add(particlesMesh);
+                                
+                                // Add a light source
+                                const light = new THREE.PointLight(0x7e22ce, 1, 100);
+                                light.position.set(5, 5, 5);
+                                scene.add(light);
+                                
+                                const ambientLight = new THREE.AmbientLight(0x404040);
+                                scene.add(ambientLight);
+                                
+                                camera.position.z = 5;
+                                
+                                // Animation loop
+                                function animate() {
+                                    requestAnimationFrame(animate);
+                                    
+                                    particlesMesh.rotation.x += 0.0003;
+                                    particlesMesh.rotation.y += 0.0005;
+                                    
+                                    // Pulsing effect
+                                    particlesMaterial.size = 0.03 + Math.sin(Date.now() * 0.001) * 0.01;
+                                    
+                                    renderer.render(scene, camera);
+                                }
+                                
+                                animate();
+                                
+                                // Handle window resize
+                                window.addEventListener('resize', () => {
+                                    camera.aspect = window.innerWidth / window.innerHeight;
+                                    camera.updateProjectionMatrix();
+                                    renderer.setSize(window.innerWidth, window.innerHeight);
+                                });
+                            }
+                            
+                            // GSAP Animations
+                            gsap.registerEffect({
+                                name: "float",
+                                effect: (targets, config) => {
+                                    return gsap.to(targets, {
+                                        y: config.y,
+                                        duration: config.duration,
+                                        ease: "sine.inOut",
+                                        yoyo: true,
+                                        repeat: -1
+                                    });
+                                },
+                                defaults: {y: -10, duration: 2}
+                            });
+                            
+                            // Apply floating effect to contact card
+                            gsap.effects.float(".contact-card", {y: -15, duration: 3});
+                            
+                            // Button hover animation
+                            document.getElementById('submit-btn').addEventListener('mouseenter', () => {
+                                gsap.to("#submit-btn", {
+                                    duration: 0.3,
+                                    y: -5,
+                                    z: 10,
+                                    boxShadow: "0 15px 30px rgba(234, 179, 8, 0.4)",
+                                    ease: "power2.out"
+                                });
+                            });
+                            
+                            document.getElementById('submit-btn').addEventListener('mouseleave', () => {
+                                gsap.to("#submit-btn", {
+                                    duration: 0.3,
+                                    y: 0,
+                                    z: 0,
+                                    boxShadow: "0 5px 15px rgba(234, 179, 8, 0.3)",
+                                    ease: "power2.out"
+                                });
+                            });
+                            
+                            // Input field animations
+                            const inputFields = document.querySelectorAll('.input-field');
+                            inputFields.forEach(field => {
+                                field.addEventListener('focus', () => {
+                                    gsap.to(field, {
+                                        duration: 0.3,
+                                        scale: 1.02,
+                                        z: 15,
+                                        boxShadow: "0 15px 30px rgba(0, 0, 0, 0.3)",
+                                        ease: "power2.out"
+                                    });
+                                });
+                                
+                                field.addEventListener('blur', () => {
+                                    gsap.to(field, {
+                                        duration: 0.3,
+                                        scale: 1,
+                                        z: 0,
+                                        boxShadow: "none",
+                                        ease: "power2.out"
+                                    });
+                                });
+                            });
+                            
+                            // Contact icons animation
+                            const contactIcons = document.querySelectorAll('.contact-icon');
+                            contactIcons.forEach(icon => {
+                                icon.addEventListener('mouseenter', () => {
+                                    gsap.to(icon, {
+                                        duration: 0.3,
+                                        z: 10,
+                                        y: -3,
+                                        rotateY: 10,
+                                        boxShadow: "0 10px 20px rgba(0, 0, 0, 0.2)",
+                                        ease: "power2.out"
+                                    });
+                                });
+                                
+                                icon.addEventListener('mouseleave', () => {
+                                    gsap.to(icon, {
+                                        duration: 0.3,
+                                        z: 0,
+                                        y: 0,
+                                        rotateY: 0,
+                                        boxShadow: "none",
+                                        ease: "power2.out"
+                                    });
+                                });
+                            });
+                            
+                            // Form submission
+                            document.getElementById('contact-form').addEventListener('submit', function(e) {
+                                e.preventDefault();
+                                
+                                const submitBtn = document.getElementById('submit-btn');
+                                
+                                // Animation on submit
+                                gsap.to(submitBtn, {
+                                    duration: 0.2,
+                                    scale: 0.95,
+                                    y: 2,
+                                    backgroundColor: "#facc15",
+                                    onComplete: function() {
+                                        gsap.to(submitBtn, {
+                                            duration: 0.3,
+                                            scale: 1,
+                                            y: 0,
+                                            backgroundColor: "#fbbf24",
+                                            ease: "elastic.out(1, 0.5)"
+                                        });
+                                        
+                                        // Show success message
+                                        const successMsg = document.createElement('div');
+                                        successMsg.className = 'text-center text-green-400 mt-4';
+                                        successMsg.textContent = 'پیام شما با موفقیت ارسال شد!';
+                                        successMsg.style.opacity = 0;
+                                        
+                                        this.appendChild(successMsg);
+                                        
+                                        gsap.to(successMsg, {
+                                            duration: 0.5,
+                                            opacity: 1,
+                                            y: -10
+                                        });
+                                        
+                                        // Reset form after 3 seconds
+                                        setTimeout(() => {
+                                            this.reset();
+                                            gsap.to(successMsg, {
+                                                duration: 0.5,
+                                                opacity: 0,
+                                                y: 10,
+                                                onComplete: () => successMsg.remove()
+                                            });
+                                        }, 3000);
+                                    }
+                                });
+                            });
+                            
+                            // Create floating particles (fallback if Three.js doesn't load)
+                            function createFloatingParticles() {
+                                const container = document.getElementById('floating-particles');
+                                const particleCount = 20;
+                                
+                                for (let i = 0; i < particleCount; i++) {
+                                    const particle = document.createElement('div');
+                                    particle.className = 'particle';
+                                    
+                                    // Random properties
+                                    const size = Math.random() * 10 + 5;
+                                    const posX = Math.random() * 100;
+                                    const posY = Math.random() * 100;
+                                    const delay = Math.random() * 5;
+                                    const duration = Math.random() * 10 + 10;
+                                    
+                                    particle.style.width = `${size}px`;
+                                    particle.style.height = `${size}px`;
+                                    particle.style.left = `${posX}%`;
+                                    particle.style.top = `${posY}%`;
+                                    particle.style.opacity = Math.random() * 0.5 + 0.1;
+                                    
+                                    container.appendChild(particle);
+                                    
+                                    // Animate particle
+                                    gsap.to(particle, {
+                                        x: (Math.random() - 0.5) * 100,
+                                        y: (Math.random() - 0.5) * 100,
+                                        duration: duration,
+                                        delay: delay,
+                                        ease: "sine.inOut",
+                                        yoyo: true,
+                                        repeat: -1
+                                    });
+                                }
+                            }
+                            
+                            // Fallback if Three.js fails
+                            setTimeout(() => {
+                                if (typeof THREE === 'undefined') {
+                                    createFloatingParticles();
+                                }
+                            }, 1000);
+                        </script>
+                   
+        
+    </main>
+    
+    
+    
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS animation
+        AOS.init({
+            duration: 800,
+            once: true,
+            easing: 'ease-in-out'
+        });
+        
+        // Three.js Background Animation
+       
+        
+        // Form submission handling
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Here you would normally send the form data to the server
+            alert('پیام شما با موفقیت ارسال شد! به زودی با شما تماس خواهیم گرفت.');
+            this.reset();
+        });
+    </script>
+
+    <!-- Footer -->
+
+
+ <!-- موج SVG متحرک بالای فوتر -->
+ <div class="relative -mb-1">
+    <svg class="w-full h-24 md:h-32 lg:h-40" viewBox="0 0 1440 320" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="gradient-wave" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#1e1b4b" />   <!-- indigo-900 -->
+          <stop offset="100%" stop-color="#6b21a8" /> <!-- purple-800 -->
+        </linearGradient>
+      </defs>
+      <path fill="url(#gradient-wave)" fill-opacity="1">
+        <animate 
+          attributeName="d" 
+          dur="10s"
+          repeatCount="indefinite"
+          values="
+            M0,160 C360,320 1080,0 1440,160 L1440,320 L0,320 Z;
+            M0,200 C480,80 960,320 1440,200 L1440,320 L0,320 Z;
+            M0,160 C360,320 1080,0 1440,160 L1440,320 L0,320 Z
+          " 
+        />
+      </path>
+    </svg>
+  </div>
+  
+  
+   <footer class="footer-3d bg-gradient-to-br from-indigo-900 to-purple-800 text-white relative overflow-hidden pt-12 pb-8">
+        <div class="relative z-10">
+            <!-- Floating orbs for 3D effect -->
+            <div class="floating-orb top-1/4 left-1/4" style="animation-delay: 0s;"></div>
+            <div class="floating-orb top-1/3 right-1/4" style="animation-delay: 1s;"></div>
+            <div class="floating-orb bottom-1/4 right-1/3" style="animation-delay: 2s;"></div>
+            <div class="floating-orb bottom-1/3 left-1/3" style="animation-delay: 3s;"></div>
+            
+            <div class="container mx-auto px-4 footer-content">
+                <div class="flex flex-wrap justify-between">
+                    <!-- Company Info -->
+                    <div class="w-full md:w-1/4 lg:w-1/5 mb-8">
+                        <h3 class="text-2xl font-bold mb-4 transform hover:rotate-1 transition-transform duration-300">3D<span class="text-purple-300">Wave</span></h3>
+                        <p class="mb-4 opacity-90 leading-relaxed">Creating immersive digital experiences with depth and dimension for the modern web.</p>
+                        <div class="flex space-x-4 mt-6">
+                            <a href="#" class="social-icon text-white text-xl w-10 h-10 flex items-center justify-center rounded-full bg-purple-700 hover:bg-purple-600">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="social-icon text-white text-xl w-10 h-10 flex items-center justify-center rounded-full bg-purple-700 hover:bg-purple-600">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="social-icon text-white text-xl w-10 h-10 flex items-center justify-center rounded-full bg-purple-700 hover:bg-purple-600">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-icon text-white text-xl w-10 h-10 flex items-center justify-center rounded-full bg-purple-700 hover:bg-purple-600">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Links -->
+                    <div class="w-full sm:w-1/2 md:w-1/4 lg:w-1/6 mb-8">
+                        <h4 class="text-lg font-semibold mb-4 border-b border-purple-400 pb-2">Pages</h4>
+                        <ul>
+                            <li class="mb-2 link-item">
+                                <a href="#" class="opacity-90 hover:opacity-100 hover:text-purple-200">Home</a>
+                            </li>
+                            <li class="mb-2 link-item">
+                                <a href="#" class="opacity-90 hover:opacity-100 hover:text-purple-200">Our Services</a>
+                            </li>
+                            <li class="mb-2 link-item">
+                                <a href="#" class="opacity-90 hover:opacity-100 hover:text-purple-200">Electrical Work</a>
+                            </li>
+                            <li class="mb-2 link-item">
+                                <a href="#" class="opacity-90 hover:opacity-100 hover:text-purple-200">About Us</a>
+                            </li>
+                            <li class="mb-2 link-item">
+                                <a href="#" class="opacity-90 hover:opacity-100 hover:text-purple-200">Contact Us</a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Services -->
+                    <div class="w-full sm:w-1/2 md:w-1/4 lg:w-1/6 mb-8">
+                        <h4 class="text-lg font-semibold mb-4 border-b border-purple-400 pb-2">Services</h4>
+                        <ul>
+                            <li class="mb-2 link-item">
+                                <a href="#" class="opacity-90 hover:opacity-100 hover:text-purple-200">Portfolio</a>
+                            </li>
+                            <li class="mb-2 link-item">
+                                <a href="#" class="opacity-90 hover:opacity-100 hover:text-purple-200">Electrical Wiring</a>
+                            </li>
+                            <li class="mb-2 link-item">
+                                <a href="#" class="opacity-90 hover:opacity-100 hover:text-purple-200">Fiber Optics</a>
+                            </li>
+                            <li class="mb-2 link-item">
+                                <a href="#" class="opacity-90 hover:opacity-100 hover:text-purple-200">Consultation</a>
+                            </li>
+                            <li class="mb-2 link-item">
+                                <a href="#" class="opacity-90 hover:opacity-100 hover:text-purple-200">Building Electrical</a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Newsletter -->
+                    <div class="w-full md:w-1/3 lg:w-1/4 mb-8">
+                        <h4 class="text-lg font-semibold mb-4 border-b border-purple-400 pb-2">Electrical Wiring</h4>
+                        <p class="mb-4 opacity-90 leading-relaxed">With the latest technology in the world</p>
+                        <div class="flex">
+                            <input type="email" placeholder="Your email" class="flex-grow newsletter-input px-4 py-2 rounded-l-lg focus:outline-none bg-white bg-opacity-20 text-white placeholder-purple-200 focus:bg-opacity-30">
+                            <button class="submit-btn bg-purple-600 hover:bg-purple-500 px-4 py-2 rounded-r-lg font-medium transition-colors">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Copyright -->
+                <div class="pt-8 mt-8 border-t border-purple-700 text-center opacity-80">
+                    <p>© All rights reserved.</p>
+                </div>
+            </div>
+            
+            <!-- 3D Shadow Effect -->
+            <div class="footer-shadow"></div>
+        </div>
+    </footer>
+    
+    <script>
+        // Add 3D tilt effect on mouse move
+        document.addEventListener('mousemove', function(e) {
+            const footer = document.querySelector('.footer-3d');
+            const bodyWidth = document.body.clientWidth;
+            const bodyHeight = document.body.clientHeight;
+            
+            // Only apply effect when cursor is over footer
+            const rect = footer.getBoundingClientRect();
+            if (e.clientY < rect.top) return;
+            
+            // Normalized position (-1 to 1)
+            const xPos = (e.clientX / bodyWidth) * 2 - 1;
+            const yPos = (e.clientY / bodyHeight) * 2 - 1;
+            
+            // Apply 3D transform
+            footer.style.transform = `
+                rotateY(${-xPos * 5}deg)
+                rotateX(${yPos * 5}deg)
+            `;
+            
+            // Parallax effect for content
+            const content = document.querySelector('.footer-content');
+            content.style.transform = `
+                translateZ(${30 + (Math.abs(xPos) + Math.abs(yPos)) * 10}px)
+            `;
+        });
+        
+        // Reset transform when mouse leaves footer
+        document.querySelector('.footer-3d').addEventListener('mouseleave', function() {
+            this.style.transform = 'none';
+            document.querySelector('.footer-content').style.transform = 'translateZ(30px)';
+        });
+        
+        // Mobile touch effect
+        let startX, startY;
+        document.querySelector('.footer-3d').addEventListener('touchstart', function(e) {
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+        });
+        
+        document.querySelector('.footer-3d').addEventListener('touchmove', function(e) {
+            if (!startX || !startY) return;
+            
+            const xDiff = startX - e.touches[0].clientX;
+            const yDiff = startY - e.touches[0].clientY;
+            
+            // Only apply effect if user is not scrolling vertically
+            if (Math.abs(xDiff) > Math.abs(yDiff)) {
+                e.preventDefault();
+                
+                const bodyWidth = document.body.clientWidth;
+                const xPos = (e.touches[0].clientX / bodyWidth) * 2 - 1;
+                
+                this.style.transform = `
+                    rotateY(${-xPos * 10}deg)
+                `;
+            }
+        });
+        
+        document.querySelector('.footer-3d').addEventListener('touchend', function() {
+            this.style.transform = 'none';
+            startX = null;
+            startY = null;
+        });
+    </script>
+
+
+    <script>
+      // مقداردهی اولیه AOS
+      AOS.init({
+        duration: 800,
+        once: true,
+      });
+
+      // انیمیشن پس‌زمینه هیرو (Hero Canvas)
+      function initHeroCanvas() {
+        const canvas = document.getElementById("bgCanvas");
+        if (!canvas) return;
+
+        // تنظیمات Three.js
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(
+          75,
+          window.innerWidth / window.innerHeight,
+          0.1,
+          1000
+        );
+        const renderer = new THREE.WebGLRenderer({
+          canvas,
+          alpha: true,
+          antialias: true,
+        });
+
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+       
+        animate();
+
+        // رسپانسیو کردن
+        window.addEventListener("resize", () => {
+          camera.aspect = window.innerWidth / window.innerHeight;
+          camera.updateProjectionMatrix();
+          renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+      }
+
+      // انیمیشن‌های GSAP
+      function initGSAPAnimations() {
+        gsap.registerPlugin(ScrollTrigger);
+
+        // انیمیشن برای کارت‌های خدمات
+        gsap.utils.toArray(".service-card").forEach((card, i) => {
+          gsap.from(card, {
+            scrollTrigger: {
+              trigger: card,
+              start: "top 80%",
+              toggleActions: "play none none none",
+            },
+            y: 50,
+            opacity: 0,
+            duration: 0.8,
+            delay: i * 0.1,
+            ease: "power2.out",
+          });
+        });
+
+        // انیمیشن برای آیتم‌های نمونه کار
+        gsap.utils.toArray(".portfolio-item").forEach((item, i) => {
+          gsap.from(item, {
+            scrollTrigger: {
+              trigger: item,
+              start: "top 80%",
+              toggleActions: "play none none none",
+            },
+            y: 50,
+            opacity: 0,
+            duration: 0.8,
+            delay: i * 0.1,
+            ease: "power2.out",
+          });
+        });
+      }
+
+      // مقداردهی اولیه وقتی DOM آماده است
+      document.addEventListener("DOMContentLoaded", () => {
+        initHeroCanvas();
+        initGSAPAnimations();
+
+        // اسکرول نرم برای لینک‌های داخلی
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute("href")).scrollIntoView({
+              behavior: "smooth",
+            });
+          });
+        });
+
+        // دکتم تماس
+        document.getElementById("ctaBtn").addEventListener("click", () => {
+          document.getElementById("contact").scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+      document.addEventListener("DOMContentLoaded", function () {
+        const swiper = new Swiper(".swiper", {
+          effect: "cube",
+          grabCursor: true,
+          cubeEffect: {
+            shadow: true,
+            slideShadows: true,
+            shadowOffset: 20,
+            shadowScale: 0.94,
+          },
+          pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+          },
+          // اضافه کردن autoplay (اختیاری)
+          autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+          },
+        });
+      });
+      const swiper = new Swiper(".swiper", {
+        effect: "cube",
+        grabCursor: true,
+        cubeEffect: {
+          shadow: true,
+          slideShadows: true,
+          shadowOffset: 20,
+          shadowScale: 0.94,
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        autoplay: {
+          delay: 20000,
+          disableOnInteraction: false,
+        },
+        on: {
+          slideChange: function () {
+            // همه ویدیوها رو پاز کن
+            document
+              .querySelectorAll(".swiper-slide video")
+              .forEach((video) => {
+                video.pause();
+                video.currentTime = 0;
+              });
+            // ویدیوی اسلاید فعال رو پلی کن (اگه وجود داشت)
+            const activeSlide = this.slides[this.activeIndex];
+            const video = activeSlide.querySelector("video");
+            if (video) {
+              video.play();
+            }
+          },
+        },
+      });
+
+      // برای پلی ویدیو اسلاید اول هنگام بارگذاری صفحه
+      window.addEventListener("load", () => {
+        const firstVideo = document.querySelector(".swiper-slide-active video");
+        if (firstVideo) firstVideo.play();
+      });
+      document.addEventListener("DOMContentLoaded", () => {
+        // انیمیشن ورود
+        gsap.from("header", { y: -100, opacity: 0, duration: 1 });
+        gsap.from("#desktop-menu a", {
+          opacity: 0,
+          y: -10,
+          stagger: 0.2,
+          delay: 0.5,
+          duration: 0.5,
+        });
+
+        // منوی موبایل
+        const menuToggle = document.getElementById("menu-toggle");
+        const mobileMenu = document.getElementById("mobile-menu");
+        let menuOpen = false;
+
+        menuToggle.addEventListener("click", () => {
+          if (!menuOpen) {
+            mobileMenu.classList.remove("hidden");
+            gsap.fromTo(
+              mobileMenu,
+              { scaleY: 0 },
+              { scaleY: 1, duration: 0.3, transformOrigin: "top" }
+            );
+          } else {
+            gsap.to(mobileMenu, {
+              scaleY: 0,
+              duration: 0.3,
+              transformOrigin: "top",
+              onComplete: () => mobileMenu.classList.add("hidden"),
+            });
+          }
+          menuOpen = !menuOpen;
+        });
+
+        // بستن منو در اسکرول یا کلیک بیرون
+        window.addEventListener("scroll", () => {
+          if (menuOpen) {
+            gsap.to(mobileMenu, {
+              scaleY: 0,
+              duration: 0.3,
+              transformOrigin: "top",
+              onComplete: () => mobileMenu.classList.add("hidden"),
+            });
+            menuOpen = false;
+          }
+        });
+
+        document.addEventListener("click", (e) => {
+          if (
+            !menuToggle.contains(e.target) &&
+            !mobileMenu.contains(e.target)
+          ) {
+            if (menuOpen) {
+              gsap.to(mobileMenu, {
+                scaleY: 0,
+                duration: 0.3,
+                transformOrigin: "top",
+                onComplete: () => mobileMenu.classList.add("hidden"),
+              });
+              menuOpen = false;
+            }
+          }
+        });
+      });
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const menuToggle = document.getElementById("menu-toggle");
+        const mobileMenu = document.getElementById("mobile-menu");
+        let menuOpen = false;
+
+        // آماده‌سازی اولیه
+        gsap.set(mobileMenu, {
+          height: "auto",
+          scaleY: 0,
+          display: "none",
+          transformOrigin: "top",
+        });
+
+        menuToggle.addEventListener("click", () => {
+          if (!menuOpen) {
+            gsap.set(mobileMenu, { display: "flex" });
+            gsap.to(mobileMenu, {
+              scaleY: 1,
+              duration: 0.3,
+              ease: "power2.out",
+            });
+          } else {
+            gsap.to(mobileMenu, {
+              scaleY: 0,
+              duration: 0.3,
+              ease: "power2.in",
+              onComplete: () => gsap.set(mobileMenu, { display: "none" }),
+            });
+          }
+          menuOpen = !menuOpen;
+        });
+
+        // بستن با کلیک بیرون
+        document.addEventListener("click", (e) => {
+          if (
+            menuOpen &&
+            !menuToggle.contains(e.target) &&
+            !mobileMenu.contains(e.target)
+          ) {
+            gsap.to(mobileMenu, {
+              scaleY: 0,
+              duration: 0.3,
+              ease: "power2.in",
+              onComplete: () => gsap.set(mobileMenu, { display: "none" }),
+            });
+            menuOpen = false;
+          }
+        });
+      });
+      document.addEventListener('DOMContentLoaded', function() {
+      AOS.init({
+        duration: 800,
+        easing: 'ease-in-out',
+        once: true
+      });
+      
+      // Initialize Three.js
+      initThreeJS();
+      
+      // GSAP animations
+      gsap.from(".gradient-text", {
+        duration: 1.5,
+        y: -30,
+        opacity: 0,
+        ease: "power2.out"
+      });
+    });
+    
+    // Three.js initialization
+   
+    
+    </script>
+
+    <!-- اسکریپت باز و بسته شدن منوی موبایل -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const mobileMenu = document.getElementById('mobile-menu');
+        const openBtn = document.getElementById('mobile-menu-toggle');
+        const closeBtn = document.getElementById('mobile-menu-close');
+
+        openBtn.addEventListener('click', () => {
+          mobileMenu.classList.remove('invisible', 'opacity-0');
+          mobileMenu.classList.add('visible', 'opacity-100');
+        });
+
+        closeBtn.addEventListener('click', () => {
+          mobileMenu.classList.add('invisible', 'opacity-0');
+          mobileMenu.classList.remove('visible', 'opacity-100');
+        });
+
+        // بستن منو با کلیک روی لینک‌ها
+        mobileMenu.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => {
+            mobileMenu.classList.add('invisible', 'opacity-0');
+            mobileMenu.classList.remove('visible', 'opacity-100');
+          });
+        });
+      });
+    </script>
+
+  </body>
+</html>
